@@ -1,0 +1,4 @@
+coteaux_chasse_site:
+    resource: "@CoteauxChasseSiteBundle/Resources/config/routing.yml"
+    prefix:   /
+
