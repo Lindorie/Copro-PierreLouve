@@ -1,0 +1,7 @@
+parameters:
+#    coteaux_chasse_actus.example.class: CoteauxChasse\ActusBundle\Example
+
+services:
+#    coteaux_chasse_actus.example:
+#        class: %coteaux_chasse_actus.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new CoteauxChasse\SiteBundle\CoteauxChasseSiteBundle(), 
         	new FOS\UserBundle\FOSUserBundle(),
+            new CoteauxChasse\ActusBundle\CoteauxChasseActusBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

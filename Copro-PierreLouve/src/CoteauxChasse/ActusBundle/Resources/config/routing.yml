@@ -1,0 +1,3 @@
+coteaux_chasse_actus_homepage:
+    path:     /actus
+    defaults: { _controller: CoteauxChasseActusBundle:Default:index }
