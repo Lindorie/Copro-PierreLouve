@@ -48,7 +48,11 @@ class Actu
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
-
+	
+    public function __construct()
+    {
+    	$this->date = new \DateTime();
+    }
 
     /**
      * Get id
