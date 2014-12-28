@@ -3,5 +3,5 @@ coteaux_chasse_actus_homepage:
     defaults: { _controller: CoteauxChasseActusBundle:Default:index }
 
 coteaux_chasse_actus_create:
-    path: /actus/create
+    path:     /admin/actus/create 
     defaults: { _controller: CoteauxChasseActusBundle:Default:create }

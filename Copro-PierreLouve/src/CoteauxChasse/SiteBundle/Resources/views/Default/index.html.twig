@@ -11,5 +11,15 @@
 			{{ flashMessage }}
 		</div>
 	{% endfor %}
+	
+	<h2>Liste des actualités</h2>
+	
+	{# dump(actus) #}
+	
+	{% for actu in actus %}
+		{{ actu.titre }} ({{ actu.id }})<br />
+		auteur : {{ actu.auteur.username }}<br />
+		{{ actu.texte }}<br /><br />
+	{% endfor %}
 
 {% endblock %}

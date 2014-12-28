@@ -8,6 +8,11 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('CoteauxChasseSiteBundle:Default:index.html.twig');
+    	// On cherche toutes les actus
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$actusRepository = $em->getRepository('CoteauxChasseActusBundle:Actu');
+    	$actus = $actusRepository->findAll();
+    	    	
+        return $this->render('CoteauxChasseSiteBundle:Default:index.html.twig', array('actus' => $actus));
     }
 }

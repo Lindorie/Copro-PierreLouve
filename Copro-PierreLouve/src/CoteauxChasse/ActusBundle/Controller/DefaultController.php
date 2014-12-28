@@ -4,6 +4,7 @@ namespace CoteauxChasse\ActusBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use CoteauxChasse\ActusBundle\Entity\Actu;
+use CoteauxChasse\SiteBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -28,6 +29,8 @@ class DefaultController extends Controller
 	    	if ($form->isValid()) {
 	    		// sauvegarder en base
 	    		$actu->getDate();
+	    		$userlog = $this->container->get('security.context')->getToken()->getUser();
+	    		$actu->setAuteur($userlog);
 	    		$em = $this->getDoctrine()->getManager();
 	    		$em->persist($actu);
 	    		$em->flush();

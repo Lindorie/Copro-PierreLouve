@@ -36,10 +36,9 @@ class Actu
     private $texte;
 
     /**
-     * @var \stdClass
-     *
-     * @ORM\Column(name="auteur", type="object")
-     */
+     * @ORM\ManyToOne(targetEntity="CoteauxChasse\SiteBundle\Entity\User", inversedBy="actus")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     **/
     private $auteur;
 
     /**
@@ -110,18 +109,6 @@ class Actu
         return $this->texte;
     }
 
-    /**
-     * Set auteur
-     *
-     * @param \stdClass $auteur
-     * @return Actu
-     */
-    public function setAuteur($auteur)
-    {
-        $this->auteur = $auteur;
-
-        return $this;
-    }
 
     /**
      * Get auteur
@@ -154,5 +141,18 @@ class Actu
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set auteur
+     *
+     * @param \CoteauxChasse\SiteBundle\Entity\User $auteur
+     * @return Actu
+     */
+    public function setAuteur(\CoteauxChasse\SiteBundle\Entity\User $auteur = null)
+    {
+        $this->auteur = $auteur;
+
+        return $this;
     }
 }
