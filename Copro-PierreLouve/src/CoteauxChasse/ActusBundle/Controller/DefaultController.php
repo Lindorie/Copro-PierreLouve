@@ -20,7 +20,6 @@ class DefaultController extends Controller
     	$form = $this->createFormBuilder($actu)
     						->add('titre', 'text')
     						->add('texte', 'textarea')
-    						->add('Creer', 'submit')
     						->getForm();
     	
     		
@@ -32,7 +31,11 @@ class DefaultController extends Controller
 	    		$em = $this->getDoctrine()->getManager();
 	    		$em->persist($actu);
 	    		$em->flush();
-	    		return new Response("L'actualité a bien été créée.");
+	    		$this->get('session')->getFlashBag()->add(
+	    				'notice',
+	    				'L\'actualité a bien été créée.'
+	    		);
+	    		return $this->redirect($this->generateUrl('homepage'));
 	    	}
     	
     	return $this->render('CoteauxChasseActusBundle:Default:form_create.html.twig', array('form' => $form->createView()));

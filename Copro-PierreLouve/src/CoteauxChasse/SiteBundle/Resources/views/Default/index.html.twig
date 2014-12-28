@@ -1,9 +1,15 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-Hello !<br />
-Voici le site de la copropriété Coteaux de chasse.<br />
-Pour l'instant la maquette du site n'est pas prête, donc il n'y aura pas de "visuel" correct.<br />
-Le bundle "SiteBundle" est utilisé pour afficher le contenu du site public.
+	Hello !<br />
+	Voici le site de la copropriété Coteaux de chasse.<br />
+	Pour l'instant la maquette du site n'est pas prête, donc il n'y aura pas de "visuel" correct.<br />
+	Le bundle "SiteBundle" est utilisé pour afficher le contenu du site public.
+
+	{% for flashMessage in app.session.flashbag.get('notice') %}
+		<div class="flash-notice">
+			{{ flashMessage }}
+		</div>
+	{% endfor %}
 
 {% endblock %}

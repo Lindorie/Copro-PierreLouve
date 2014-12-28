@@ -8,3 +8,4 @@ coteaux_chasse_site:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    
