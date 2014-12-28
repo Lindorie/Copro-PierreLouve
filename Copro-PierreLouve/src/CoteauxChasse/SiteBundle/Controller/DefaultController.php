@@ -9,7 +9,7 @@ class DefaultController extends Controller
     public function indexAction()
     {
     	// On cherche toutes les actus
-    	$em = $this->getDoctrine()->getEntityManager();
+    	$em = $this->getDoctrine()->getManager();
     	$actusRepository = $em->getRepository('CoteauxChasseActusBundle:Actu');
     	$actus = $actusRepository->findAll();
     	    	
