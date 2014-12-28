@@ -1,3 +1,7 @@
 homepage:
     path:     /
     defaults: { _controller: CoteauxChasseSiteBundle:Default:index }
+
+contact:
+    path: /contact
+    defaults: { _controller: CoteauxChasseSiteBundle:Contact:index }
