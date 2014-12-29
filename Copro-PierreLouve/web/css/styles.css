@@ -1,0 +1,105 @@
+body {
+	background: url('../images/fond.png') repeat-x bottom center;
+	text-align: center;
+}
+
+div#page {
+	width: 960px;
+	margin: 0 auto;
+	text-align: left;
+	position: relative;
+}
+
+#header {
+	overflow: hidden;
+	margin: 5px 0 25px 0;
+	padding: 0 0 0 20px;
+}
+
+h1 {
+	text-indent: -9999px;
+	margin: 0;
+	height: 0px;
+}
+
+#logo {
+	display: block;
+	width: 161px;
+	height: 101px;
+	text-decoration: none;
+	border: 0;
+	float: left;
+}
+
+#menu {
+	float: left;
+	margin: 40px 0 0 0;
+}
+
+#menu li {
+	color: #b7d149;
+	font-size: 2.6rem;
+	font-family: Arial, sans-serif;
+	text-transform: uppercase;
+	padding: 0 15px;
+	margin: 0;
+	display: inline-block;
+	list-style: none;
+	text-align: center;
+}
+
+#menu li a {
+	color: #b7d149;
+	text-decoration: none;
+}
+
+#menu li a:hover {
+	text-decoration: underline;
+}
+
+#pagetop {
+	display: table;
+}
+
+#diaporama {
+	display: table-cell;
+	width: 626px;
+	padding-right: 15px;
+}
+
+#diaporama img {
+	border: 1px solid #cecece;
+}
+
+#texteAccueil {
+	display: table-cell;
+	padding: 20px 30px;
+	border: 1px solid #d4d4d4;
+	vertical-align: top;
+	color: #999999;
+	font-size: 1.1rem;
+}
+
+#texteAccueil h2 {
+	color: #146665;
+	font-weight: bold;
+	font-size: 1.7rem;
+}
+
+#texteAccueil a {
+	display: block;
+	text-align: center;
+	padding: 5px 10px;
+	margin: 10px auto;
+	width: 80%;
+	border: 3px solid #146665;
+	color: #146665;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 1.2rem;
+}
+
+#texteAccueil a:hover {
+	background: #146665;
+	color: #fff;
+}

@@ -3,11 +3,27 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('css/reset.css') }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}" type="text/css" />
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+    	<div id="page">
+    		<div id="header">
+    			<h1>Copropriété Coteaux de chasse L'isle d'Abeau</h1>
+    			<a id="logo" href="{{ path('homepage') }}"><img src="{{ asset('images/logo.png') }}" alt="Logo de la Copropriété Coteaux de chasse de l'Isle d'Abeau" /></a>
+
+	    		{% block menu %}
+	    			<ul id="menu">
+	    				<li>Actualités</li>
+	    				<li>Agenda</li>
+	    				<li><a href="{{ path('contact') }}">Contact</a></li>
+	    			</ul>
+	    		{% endblock %}
+    		</div>
+       		{% block body %}{% endblock %}
+        </div>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
