@@ -27,7 +27,8 @@
 		{% endfor %}
 		
 	<div id="pagebottom">
-		{% block actus %}				
+		{% block actus %}			
+		<div id="actus">
 			<h2>Actualités</h2>		
 			{% for actu in actus %}
 				<div class="actu" id="actu{{ actu.id }}">
@@ -37,6 +38,7 @@
 					<p>{{ actu.texte }}</p>
 				</div>
 			{% endfor %}
+		</div>	
 		{% endblock %}
 	</div>
 

@@ -57,12 +57,16 @@ h1 {
 	text-decoration: underline;
 }
 
-#pagetop {
+#pagetop, #pagebottom {
 	display: table;
+	margin-bottom: 20px;
+}
+
+#pagetop > div, #pagebottom > div {
+	display: table-cell;
 }
 
 #diaporama {
-	display: table-cell;
 	width: 626px;
 	padding-right: 15px;
 }
@@ -72,7 +76,6 @@ h1 {
 }
 
 #texteAccueil {
-	display: table-cell;
 	padding: 20px 30px;
 	border: 1px solid #d4d4d4;
 	vertical-align: top;
@@ -102,4 +105,39 @@ h1 {
 #texteAccueil a:hover {
 	background: #146665;
 	color: #fff;
+}
+
+#actus {
+	width: 428px;
+	border: 1px solid #cecece;
+	padding: 50px 30px;
+	background: #fff;
+}
+
+#actus h2 {
+	text-indent: -9999px;
+	height: 0;
+	margin: 0;
+}
+
+#actus h3 {
+	font-size: 1.7rem;
+	color: #977e68;
+	font-weight: bold;
+	margin-bottom: 10px;
+	line-height: 1.2;
+}
+
+#actus p {
+	color: #999999;
+	font-size: 1.05rem;
+	margin: 0;
+}
+
+#actus .actu {
+	margin: 0 0 50px 0;
+}
+
+#actus .actu:last-child {
+	margin: 0 0 0 0;
 }
