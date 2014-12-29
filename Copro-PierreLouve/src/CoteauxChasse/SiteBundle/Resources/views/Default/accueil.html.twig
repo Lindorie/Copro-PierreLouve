@@ -40,6 +40,16 @@
 			{% endfor %}
 		</div>	
 		{% endblock %}
+		
+		{% block connexion %}
+		<div id="connexion">
+			{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+				Connecté ({{ app.user.username }})
+			{% else %}
+				{% render url('fos_user_security_login') %}
+			{% endif %}
+		</div>
+		{% endblock %}
 	</div>
 
 {% endblock %}
