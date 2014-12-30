@@ -1,6 +1,6 @@
 <?php
 
-namespace CoteauxChasse\ActusBundle\Entity;
+namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -36,7 +36,7 @@ class Actu
     private $texte;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CoteauxChasse\SiteBundle\Entity\User", inversedBy="actus")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="actus")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      **/
     private $auteur;
@@ -47,7 +47,7 @@ class Actu
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
-	
+
     public function __construct()
     {
     	$this->date = new \DateTime();
@@ -56,7 +56,7 @@ class Actu
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -79,7 +79,7 @@ class Actu
     /**
      * Get titre
      *
-     * @return string 
+     * @return string
      */
     public function getTitre()
     {
@@ -102,7 +102,7 @@ class Actu
     /**
      * Get texte
      *
-     * @return string 
+     * @return string
      */
     public function getTexte()
     {
@@ -113,7 +113,7 @@ class Actu
     /**
      * Get auteur
      *
-     * @return \stdClass 
+     * @return \stdClass
      */
     public function getAuteur()
     {
@@ -136,7 +136,7 @@ class Actu
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -146,10 +146,10 @@ class Actu
     /**
      * Set auteur
      *
-     * @param \CoteauxChasse\SiteBundle\Entity\User $auteur
+     * @param \AppBundle\Entity\User $auteur
      * @return Actu
      */
-    public function setAuteur(\CoteauxChasse\SiteBundle\Entity\User $auteur = null)
+    public function setAuteur(\AppBundle\Entity\User $auteur = null)
     {
         $this->auteur = $auteur;
 

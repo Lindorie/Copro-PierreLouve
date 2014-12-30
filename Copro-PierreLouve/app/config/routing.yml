@@ -1,11 +1,18 @@
-coteaux_chasse_actus:
-    resource: "@CoteauxChasseActusBundle/Resources/config/routing.yml"
-    prefix:   /
+homepage:
+    path:     /
+    defaults: { _controller: AppBundle:Default:index }
 
-coteaux_chasse_site:
-    resource: "@CoteauxChasseSiteBundle/Resources/config/routing.yml"
-    prefix:   /
+contact:
+    path: /contact
+    defaults: { _controller: AppBundle:Contact:index }
+
+actus_homepage:
+    path:     /actus
+    defaults: { _controller: AppBundle:Actu:index }
+
+actus_create:
+    path:     /admin/actus/create
+    defaults: { _controller: AppBundle:Actu:create }
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
-    

@@ -1,35 +1,33 @@
 <?php
 
-namespace CoteauxChasse\ActusBundle\Controller;
+namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use CoteauxChasse\ActusBundle\Entity\Actu;
-use CoteauxChasse\SiteBundle\Entity\User;
-use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Entity\Actu;
 use Symfony\Component\HttpFoundation\Request;
 
-class DefaultController extends Controller
+class ActuController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('CoteauxChasseActusBundle:Default:index.html.twig');
+        return $this->render('Actu/index.html.twig');
     }
-    
+
     public function createAction(Request $request) {
     	$actu = new Actu();
-    	
+
     	$form = $this->createFormBuilder($actu)
     						->add('titre', 'text')
     						->add('texte', 'textarea')
     						->getForm();
-    	
-    		
+
+
     		$form->handleRequest($request);
-    	
+
 	    	if ($form->isValid()) {
 	    		// sauvegarder en base
 	    		$actu->getDate();
-	    		$userlog = $this->container->get('security.context')->getToken()->getUser();
+	    		$userlog = $this->getUser();
 	    		$actu->setAuteur($userlog);
 	    		$em = $this->getDoctrine()->getManager();
 	    		$em->persist($actu);
@@ -40,8 +38,8 @@ class DefaultController extends Controller
 	    		);
 	    		return $this->redirect($this->generateUrl('homepage'));
 	    	}
-    	
-    	return $this->render('CoteauxChasseActusBundle:Default:form_create.html.twig', array('form' => $form->createView()));
+
+    	return $this->render('Actu/form_create.html.twig', array('form' => $form->createView()));
     }
-    
+
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace CoteauxChasse\SiteBundle\Controller;
+namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,10 +15,10 @@ class ContactController extends Controller
     						->add('message', 'textarea')
     						->add('Envoyer', 'submit')
     						->getForm();
-    	
-    		
+
+
     	$contactForm->handleRequest($request);
-    	
+
 	    if ($contactForm->isValid()) {
 	    	$data = $contactForm->getData();
 	    	var_dump($data);
@@ -30,15 +30,15 @@ class ContactController extends Controller
 		    	->setBody($data['message'])
 	    	;
 	    	$this->get('mailer')->send($message);
-	    	
+
 	    	$this->get('session')->getFlashBag()->add(
 	    			'notice',
 	    			'Le message a bien été envoyé.'
 	    	);
-	    	return $this->redirect($this->generateUrl('homepage')); 
-	    	
+	    	return $this->redirect($this->generateUrl('homepage'));
+
 	    }
-    	    	
-        return $this->render('CoteauxChasseSiteBundle:Default:contact.html.twig', array('contactForm' => $contactForm->createView()));
+
+        return $this->render('Default/contact.html.twig', array('contactForm' => $contactForm->createView()));
     }
 }

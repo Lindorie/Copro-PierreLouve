@@ -1,6 +1,6 @@
 <?php
 
-namespace CoteauxChasse\SiteBundle\Entity;
+namespace AppBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -22,36 +22,38 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
+
     /**
-     * @ORM\OneToMany(targetEntity="CoteauxChasse\ActusBundle\Entity\Actu", mappedBy="auteur")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Actu", mappedBy="auteur")
      **/
     private $actus;
-    
-    public function __construct() {
+
+    public function __construct()
+    {
+        parent::__construct();
     	$this->actus = new ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
-    
 
-    
+
+
 
     /**
      * Add actus
      *
-     * @param \CoteauxChasse\ActusBundle\Entity\Actu $actus
+     * @param \AppBundle\Entity\Actu $actus
      * @return User
      */
-    public function addActus(\CoteauxChasse\ActusBundle\Entity\Actu $actus)
+    public function addActus(\AppBundle\Entity\Actu $actus)
     {
         $this->actus[] = $actus;
 
@@ -61,9 +63,9 @@ class User extends BaseUser
     /**
      * Remove actus
      *
-     * @param \CoteauxChasse\ActusBundle\Entity\Actu $actus
+     * @param \AppBundle\Entity\Actu $actus
      */
-    public function removeActus(\CoteauxChasse\ActusBundle\Entity\Actu $actus)
+    public function removeActus(\AppBundle\Entity\Actu $actus)
     {
         $this->actus->removeElement($actus);
     }
@@ -71,7 +73,7 @@ class User extends BaseUser
     /**
      * Get actus
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getActus()
     {

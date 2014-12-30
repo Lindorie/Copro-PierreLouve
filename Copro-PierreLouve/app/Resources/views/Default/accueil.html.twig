@@ -1,5 +1,5 @@
 {# Template de la page d'accueil #}
-{% extends '::base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block body %}
 
@@ -9,7 +9,7 @@
 			<img src="{{ asset('images/illu_diaporama.jpg') }}" alt="Image en attendant le diaporama" />
 		</div>
 		{% endblock %}
-		
+
 		{% block texteAccueil %}
 		<div id="texteAccueil">
 			<h2>Hello !</h2>
@@ -19,34 +19,34 @@
 		</div>
 		{% endblock %}
 	</div>
-	
+
 		{% for flashMessage in app.session.flashbag.get('notice') %}
 			<div class="flash-notice">
 				{{ flashMessage }}
 			</div>
 		{% endfor %}
-		
+
 	<div id="pagebottom">
-		{% block actus %}			
+		{% block actus %}
 		<div id="actus">
-			<h2>Actualités</h2>		
+			<h2>Actualités</h2>
 			{% for actu in actus %}
 				<div class="actu" id="actu{{ actu.id }}">
 					{# ici rajouter la photo d'illustration #}
-					
+
 					<h3>{{ actu.titre }}</h3>
 					<p>{{ actu.texte }}</p>
 				</div>
 			{% endfor %}
-		</div>	
+		</div>
 		{% endblock %}
-		
+
 		{% block connexion %}
 		<div id="connexion">
 			{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
 				Connecté ({{ app.user.username }})
 			{% else %}
-				{% render url('fos_user_security_login') %}
+				{% render path('fos_user_security_login') %}
 			{% endif %}
 		</div>
 		{% endblock %}
