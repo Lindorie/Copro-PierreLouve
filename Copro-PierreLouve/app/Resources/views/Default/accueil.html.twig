@@ -14,7 +14,6 @@
 		<div id="texteAccueil">
 			<h2>Hello !</h2>
 			<p>Voici le site de la copropriété Coteaux de chasse.<br />
-			Le bundle "SiteBundle" est utilisé pour afficher le contenu du site public.</p>
 			<a href="#">Voir plus d'informations</a>
 		</div>
 		{% endblock %}
@@ -44,7 +43,9 @@
 		{% block connexion %}
 		<div id="connexion">
 			{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-				Connecté ({{ app.user.username }})
+				Connecté ({{ app.user.username }})<br />
+				<a href="{{ path('fos_user_security_logout') }}">Déconnexion</a><br />
+				<a href="{{ path('documents') }}">Documents</a>
 			{% else %}
 				{% render path('fos_user_security_login') %}
 			{% endif %}

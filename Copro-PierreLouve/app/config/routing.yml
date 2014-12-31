@@ -14,5 +14,9 @@ actus_create:
     path:     /admin/actus/create
     defaults: { _controller: AppBundle:Actu:create }
 
+documents:
+    path: /documents
+    defaults: { _controller: AppBundle:Document:index }
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
