@@ -13,6 +13,6 @@ class DocumentController extends Controller
     	$actusRepository = $em->getRepository('AppBundle:Document');
     	$actus = $actusRepository->findBy(array(), array('type' => 'asc'));
 
-        return $this->render('Default/accueil.html.twig', array('docus' => docus));
+        return $this->render('Default/documents.html.twig', array('docus' => docus));
     }
 }
