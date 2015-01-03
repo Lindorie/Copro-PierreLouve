@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Document
@@ -35,6 +36,14 @@ class Document
      */
     private $description;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="text")
+     */
+    private $type;
+    
     /**
      * @var string
      *
@@ -48,7 +57,18 @@ class Document
      * @ORM\Column(name="voir", type="string", length=255)
      */
     private $voir;
+    
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
+    public $file;
 
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="extension", type="string", length=5)
+     */
+    private $extension;
 
     /**
      * Get id
@@ -151,4 +171,50 @@ class Document
     {
         return $this->voir;
     }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     * @return Document
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string 
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+    
+    public function upload($directory)
+    {
+    	// la propriété « file » peut être vide si le champ n'est pas requis
+    	if (null === $this->file) {
+    		return;
+    	}
+		if ($this->extension === null) {
+			$this->retrieveSetExtension();	
+		}
+    	$this->file->move($directory, $this->id.".".$this->extension);
+    	
+    }
+	public function getFileName() {
+		$fichier = $this->id.".".$this->extension;
+		return $fichier;
+	}
+	
+	public function retrieveSetExtension() {
+		$this->extension = pathinfo($this->file->getClientOriginalName(), PATHINFO_EXTENSION);
+	}
+	
+    
 }

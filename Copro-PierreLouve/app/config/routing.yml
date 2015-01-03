@@ -17,6 +17,16 @@ actus_create:
 documents:
     path: /documents
     defaults: { _controller: AppBundle:Document:index }
+    
+document_dl:
+    path: /document/{docId}
+    defaults: { _controller: AppBundle:Document:downloadFile }
+    requirements:
+      id: \d+
+    
+documents_add:
+    path: /documents/add
+    defaults: { _controller: AppBundle:Document:add }
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

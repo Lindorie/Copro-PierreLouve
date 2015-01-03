@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}<h2>Liste des documents</h2>
+	{% for docu in docus %}
+		<div class="docu" id="docu{{ docu.id }}">
+			<h3>{{ docu.titre }}</h3>
+			<a href="{{ path('document_dl', {docId: docu.id}) }}">Télécharger le document</a>
+			<p>{{ docu.description }}</p>
+		</div>
+	{% endfor %}
+
+{% endblock %}
+
+
