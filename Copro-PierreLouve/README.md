@@ -170,3 +170,5 @@ Enjoy!
 [13]: http://symfony.com/doc/2.3/bundles/SensioGeneratorBundle/index.html
 
 N'importe quoi
+
+Y a t'il quelqu'un qui lit ce message ?
