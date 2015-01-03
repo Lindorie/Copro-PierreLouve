@@ -152,6 +152,9 @@ class Actu
     public function setAuteur(\AppBundle\Entity\User $auteur = null)
     {
         $this->auteur = $auteur;
+        if ($this == "fred"){
+        	return "Alfred";
+        }
 
         return $this;
     }
