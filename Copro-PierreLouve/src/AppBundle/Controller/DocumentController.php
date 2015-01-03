@@ -32,27 +32,28 @@ class DocumentController extends Controller
     					'label' => 'Type', 
     					'choices' => 
 	    					array(
-	    						'Document public',
+	    						'Document public' => 'Document public',
 	    						'Document commun' => 
 	    							array(
-    									'Compte-rendu d\'AG',
-    									'Compte-rendu de réunion du conseil syndical',
-    									'Budget',
-    									'Devis',
-    									'Contrat d\'entretien',
-    									'Avis d\'échéance',
-    									'Autre document'
+    									'Compte-rendu d\'AG' => 'Compte-rendu d\'AG',
+    									'Compte-rendu de réunion du conseil syndical' => 'Compte-rendu de réunion du conseil syndical',
+    									'Budget' => 'Budget',
+    									'Devis' => 'Devis',
+    									'Contrat d\'entretien' => 'Contrat d\'entretien',
+    									'Avis d\'échéance' => 'Avis d\'échéance',
+    									'Autre document' => 'Autre document'
 	    							),
 	    						'Document personnel' =>
 	    							array(
-    									'Relevé de compte personnel',
-	    								'Autre document personnel'
+    									'Relevé de compte personnel' => 'Relevé de compte personnel',
+	    								'Autre document personnel' => 'Autre document personnel'
 	    							)
 	    						
-	    					)	
+	    					),
+    					'data' => 'Autre document'
     			)
     		)
-    	->add('file')
+    	->add('file', 'file', ['required' => true, 'label' => 'Document'])
     	->add(
     			'gerer', 
     			'choice', 
