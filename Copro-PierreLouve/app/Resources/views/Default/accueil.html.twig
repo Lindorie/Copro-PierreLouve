@@ -37,6 +37,7 @@
 
 					<h3>{{ actu.titre }}</h3>
 					<p>{{ actu.texte }}</p>
+					<p>{{ actu.date|date("d/m/Y") }}</p>
 				</div>
 			{% endfor %}
 		</div>

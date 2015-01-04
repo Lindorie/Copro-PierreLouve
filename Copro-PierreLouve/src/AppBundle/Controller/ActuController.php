@@ -10,7 +10,11 @@ class ActuController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('Actu/index.html.twig');
+    	$em = $this->getDoctrine()->getManager();
+    	$actusRepository = $em->getRepository('AppBundle:Actu');
+    	$actus = $actusRepository->findBy(array(), array('date' => 'desc'), 10);
+
+        return $this->render('Actu/index.html.twig', array('actus' => $actus));
     }
 
     public function createAction(Request $request) {
