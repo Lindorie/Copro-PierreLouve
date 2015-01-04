@@ -27,6 +27,10 @@ document_dl:
 documents_add:
     path: /documents/add
     defaults: { _controller: AppBundle:Document:add }
+    
+plus_infos_homepage:
+    path:     /plusInfos
+    defaults: { _controller: AppBundle:Default:plusInfos }
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

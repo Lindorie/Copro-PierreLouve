@@ -15,4 +15,10 @@ class DefaultController extends Controller
 
         return $this->render('Default/accueil.html.twig', array('actus' => $actus));
     }
+    
+    public function plusInfosAction()
+    {
+    	
+        return $this->render('Default/plus_infos.html.twig');
+    }
 }
