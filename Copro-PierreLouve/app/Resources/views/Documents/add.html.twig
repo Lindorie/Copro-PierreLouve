@@ -1,7 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}<h2>Ajouter un document</h2>
-	{{ form(form_add) }}
+	{# form(form_add) #}
+	
+	{{ form_start(form_add) }}
+		<div class="form_content">
+			{{ form_errors(form_add) }}
+			{{ form_row(form_add.titre) }}
+			{{ form_row(form_add.description) }}
+			{{ form_row(form_add.type) }}
+			{{ form_row(form_add.file) }}
+			{{ form_row(form_add.gerer) }}
+			{{ form_row(form_add.voir) }}
+		</div>
+	{{ form_end(form_add) }}
 {% endblock %}
 
 

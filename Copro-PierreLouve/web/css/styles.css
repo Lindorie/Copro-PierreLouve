@@ -1,13 +1,24 @@
-body {
-	background: url('../images/fond.png') repeat-x bottom center;
-	text-align: center;
+html {
+	min-height: 100%;
 }
 
-div#page {
+body {
+	background: url('../images/fond.png') repeat-x bottom center;
+	background-size: 1px 100%;
+	text-align: center;
+	min-height: 100%;
+}
+
+#page {
 	width: 960px;
 	margin: 0 auto;
 	text-align: left;
 	position: relative;
+	display: table;
+}
+
+.accueil #page {
+	display: block;
 }
 
 #header {
@@ -53,9 +64,11 @@ h1 {
 	text-decoration: none;
 }
 
-#menu li a:hover {
+#menu li a:hover, #menu li a:active {
 	text-decoration: underline;
 }
+
+/* Styles de l'accueil */
 
 #pagetop, #pagebottom {
 	display: table;
@@ -140,4 +153,76 @@ h1 {
 
 #actus .actu:last-child {
 	margin: 0 0 0 0;
+}
+
+/* Styles de page */
+
+aside {
+	float: left;
+	width: 280px;
+	margin: 0 0 0 10px;
+	box-sizing: border-box;
+	padding: 15px;
+}
+
+section.isWithAside {
+	overflow: hidden;
+	width: 660px;
+	margin: 0 10px 0 0;
+	float: left;
+}
+
+/* Formulaires */
+
+#connexion form {
+	background: #9dcdc9;
+	padding: 25px 20px;
+}
+
+form {
+	text-align: center;
+	margin: 20px auto;
+}
+
+form .form_content {
+	display: table;
+	border-collapse: separate;
+	border-spacing: 10px 15px;
+}
+
+form .form_content > div {
+	display: table-row;
+	padding-bottom: 10px;
+	text-align: left;
+}
+
+form label, form input {
+	display: table-cell;
+	vertical-align: top;
+}
+
+form label.required:after {
+	content: " *";
+	color: #f00;
+}
+
+form input, form textarea {
+	padding: 2px 5px;
+	font-size: 1.2rem;
+	font-family: Arial, sans-serif;	
+	min-width: 150px;
+}
+
+form input[type="submit"] {
+	display: inline-block;
+}
+
+/* Footer */
+
+#footer {
+	clear: both;
+	margin: 15px 0 0 0;
+	text-align: center;
+	font-size: 1.1rem;
+	font-style: italic;
 }

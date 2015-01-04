@@ -1,11 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
+{% block section_class "" %}
+
+{% block section_title %}Contactez-nous !{% endblock %}
+
+{% block section_content %}
 	{{ form_start(contactForm) }}
-		{{ form_errors(contactForm) }}
-		{{ form_row(contactForm.nom) }}
-		{{ form_row(contactForm.email) }}
-		{{ form_row(contactForm.message) }}
+		<div class="form_content">
+			{{ form_errors(contactForm) }}
+			{{ form_row(contactForm.nom) }}
+			{{ form_row(contactForm.email) }}
+			{{ form_row(contactForm.message) }}
+		</div>
 	{{ form_end(contactForm) }}
 
 {% endblock %}
+
+{% block aside "" %}
+	

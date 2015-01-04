@@ -8,7 +8,7 @@
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-    <body>
+    <body class="{% block body_class %}BFforever{% endblock %}">
     	<div id="page">
     		<div id="header">
     			<h1>Copropriété Coteaux de chasse L'isle d'Abeau</h1>
@@ -22,7 +22,32 @@
 	    			</ul>
 	    		{% endblock %}
     		</div>
-       		{% block body %}{% endblock %}
+       		{% block body %}
+       	
+       			<section {% block section_class %}class="isWithAside"{% endblock %}>	
+	       			{% block section %}
+       					<h2>{% block section_title %}Titre de la section (surchargez-moi SVP !){% endblock %}</h2>
+       					<div class="section_content">
+       						{% block section_content %}Texte de la section (surchargez-moi SVP, je ne sers à rien !){% endblock %}
+       					</div>
+	       			{% endblock %}
+       			</section>
+       		
+       			{% block aside %}
+       				<aside>
+       					{% block aside_title %}<h2>Titre de colonne (surchargez-moi ou supprimez-moi SVP ! - je suis facultatif)</h2>{% endblock %}
+       					<div class="aside_content">
+       						{% block aside_content %}
+       							Contenu de la colonne (effacez ce texte SVP, il faut le surcharger par du vrai contenu...)
+       						{% endblock %}
+       					</div>
+       				</aside>
+       			{% endblock %}
+       			
+       		{% endblock %}
+       		<div id="footer">
+       			<p>blablablbal bkankjhuyg brandon !!! </p>
+       		</div>
         </div>
         {% block javascripts %}{% endblock %}
     </body>
