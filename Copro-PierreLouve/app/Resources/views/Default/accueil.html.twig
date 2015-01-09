@@ -16,7 +16,7 @@
 		<div id="texteAccueil">
 			<h2>Hello !</h2>
 			<p>Voici le site de la copropriété Coteaux de chasse.<br />
-			<a href="{{path ('plus_infos_homepage')}}">Voir plus d'informations</a>
+			<a href="{{ path('plus_infos_homepage') }}">Voir plus d'informations</a>
 		</div>
 		{% endblock %}
 	</div>
@@ -36,8 +36,8 @@
 					{# ici rajouter la photo d'illustration #}
 
 					<h3>{{ actu.titre }}</h3>
-					<p>{{ actu.texte }}</p>
 					<p>{{ actu.date|date("d/m/Y") }}</p>
+					<p>{{ actu.texte }}</p>
 				</div>
 			{% endfor %}
 		</div>
