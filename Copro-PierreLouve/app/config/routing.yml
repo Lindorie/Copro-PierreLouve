@@ -14,6 +14,12 @@ actus_create:
     path:     /admin/actus/create
     defaults: { _controller: AppBundle:Actu:create }
 
+actus_modif:
+    path:     /admin/actus/modif/{actuId}
+    defaults: { _controller: AppBundle:Actu:modifActu }
+    requirements:
+      id: \d+
+
 documents:
     path: /documents
     defaults: { _controller: AppBundle:Document:index }

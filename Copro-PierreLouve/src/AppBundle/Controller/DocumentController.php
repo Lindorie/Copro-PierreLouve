@@ -53,7 +53,7 @@ class DocumentController extends Controller
     					'data' => 'Autre document'
     			)
     		)
-    	->add('file', 'file', ['required' => true, 'label' => 'Document'])
+    	->add('file', 'file', array('required' => true, 'label' => 'Document'))
     	->add(
     			'gerer', 
     			'choice', 

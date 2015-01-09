@@ -12,6 +12,8 @@
 				{# ici rajouter la photo d'illustration #}
 
 				<h3>{{ actu.titre }}</h3>
+				<a href="{{ path('actus_modif', {actuId: actu.id}) }}">Modifier</a>
+				
 				<p>{{ actu.texte }}</p>
 				<p>{{ actu.date|date("d/m/Y") }}</p>
 			</div>
