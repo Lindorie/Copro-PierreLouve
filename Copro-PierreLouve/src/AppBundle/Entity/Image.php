@@ -19,15 +19,38 @@ class Image
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
-    private $legende;
-    private $path;
-
+    private $id;  
     /**
      * Get id
      *
      * @return integer 
      */
+    
+    
+    /**
+     * @var text
+     * @ORM\Column(name="legende", type="text")
+     * @ORM\Legende
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $legende;
+    /**
+     * Get legende
+     *
+     * @return text
+     */
+    
+    /**
+     * @var string
+     * @ORM\Column(name="path", type="string", length=255)
+     */
+    private $path;
+    /**
+     * Get path
+     *
+     * @return string
+     */
+  
     public function getId()
     {
         return $this->id;
