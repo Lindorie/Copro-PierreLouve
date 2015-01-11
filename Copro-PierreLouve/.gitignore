@@ -8,3 +8,5 @@
 /build/
 /vendor/
 /bin/
+/app/SymfonyRequirements.php
+.buildpath
