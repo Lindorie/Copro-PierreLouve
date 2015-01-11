@@ -46,6 +46,7 @@ class ActuController extends Controller
     	return $this->render('Actu/form_create.html.twig', array('form' => $form->createView()));
     }
     
+    // fonction de modif
     public function modifActuAction(Request $request, $actuId) {
     
     $em = $this->getDoctrine()->getManager();
