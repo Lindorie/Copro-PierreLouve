@@ -20,64 +20,78 @@ class Image
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;  
+    
+    
+   	/**
+     * @var string
+     *
+     * @ORM\Column(name="legende", type="text")
+     */
+    
+    private $legende;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="path", type="string", length=255)
+     */
+    
+    private $path;
+
+
     /**
      * Get id
      *
      * @return integer 
      */
-    
-    
-    /**
-     * @var text
-     * @ORM\Column(name="legende", type="text")
-     * @ORM\Legende
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $legende;
-    /**
-     * Get legende
-     *
-     * @return text
-     */
-    
-    /**
-     * @var string
-     * @ORM\Column(name="path", type="string", length=255)
-     */
-    private $path;
-    /**
-     * Get path
-     *
-     * @return string
-     */
-  
     public function getId()
     {
         return $this->id;
     }
 
-    
-    public function getLegende()
-    {
-    	return $this->legende;
-    }
-    
+    /**
+     * Set legende
+     *
+     * @param string $legende
+     * @return Image
+     */
     public function setLegende($legende)
     {
-    	$this->legende = $legende;
-    	
-    	return $this;
+        $this->legende = $legende;
+
+        return $this;
     }
-    
-    public function getPath()
+
+    /**
+     * Get legende
+     *
+     * @return string 
+     */
+    public function getLegende()
     {
-    	return $this->path;
+        return $this->legende;
     }
-    
+
+    /**
+     * Set path
+     *
+     * @param string $path
+     * @return Image
+     */
     public function setPath($path)
     {
-    	$this->path = $path;
-    	 
-    	return $this;
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get path
+     *
+     * @return string 
+     */
+    public function getPath()
+    {
+        return $this->path;
     }
 }
