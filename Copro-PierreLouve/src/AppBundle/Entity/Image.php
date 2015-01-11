@@ -39,7 +39,7 @@ class Image
     	return $this->legende;
     }
     
-    public function setLegende()
+    public function setLegende($legende)
     {
     	$this->legende = $legende;
     	
@@ -51,7 +51,7 @@ class Image
     	return $this->path;
     }
     
-    public function setPath()
+    public function setPath($path)
     {
     	$this->path = $path;
     	 
