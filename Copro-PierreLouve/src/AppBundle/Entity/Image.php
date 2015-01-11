@@ -20,7 +20,8 @@ class Image
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
+    private $legende;
+    private $path;
 
     /**
      * Get id
@@ -30,5 +31,30 @@ class Image
     public function getId()
     {
         return $this->id;
+    }
+
+    
+    public function getLegende()
+    {
+    	return $this->legende;
+    }
+    
+    public function setLegende()
+    {
+    	$this->legende = $legende;
+    	
+    	return $this;
+    }
+    
+    public function getPath()
+    {
+    	return $this->path;
+    }
+    
+    public function setPath()
+    {
+    	$this->path = $path;
+    	 
+    	return $this;
     }
 }
