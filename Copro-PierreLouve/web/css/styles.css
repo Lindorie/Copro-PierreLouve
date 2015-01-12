@@ -221,7 +221,7 @@ aside #connexion {
 
 aside #connexion label, aside #connexion input {
 	min-width: inherit;
-	display: inherit;
+	display: inline;
 }
 
 #connexion h2 {
