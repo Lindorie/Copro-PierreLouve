@@ -6,16 +6,29 @@
 {% block body %}
 
 	<div id="pagetop">
+
 		{% block diaporama %}
-		<div id="diaporama">
-			<img src="{{ asset('images/illu_diaporama.jpg') }}" alt="Image en attendant le diaporama" />
+		<div class="diaporama-wrapper">
+			<div class="diaporama">
+				<ul>
+					<li><img src="{{ asset('images/slider1.jpg') }}" width="626" height="470" alt=""></li>
+					<li><img src="{{ asset('images/slider2.jpg') }}" width="626" height="470" alt=""></li>
+					<li><img src="{{ asset('images/slider3.jpg') }}" width="626" height="470" alt=""></li>
+				</ul>
+			</div>
+
+			<div class="diaporama-pagination">
+				<!-- Pagination items will be generated in here -->
+			</div>
 		</div>
 		{% endblock %}
 
 		{% block texteAccueil %}
 		<div id="texteAccueil">
-			<h2>Hello !</h2>
-			<p>Voici le site de la copropriété Coteaux de chasse.<br />
+			<h2>Bienvenue !</h2>
+			<p>Vous êtes le site de la <strong>copropriété Coteaux de chasse</strong> située à l'Isle d'Abeau.<br />
+			N'hésitez pas à cliquer sur le lien ci-dessous pour accéder à des informations détaillées sur ce qu'est une copropriété !
+			</p>
 			<a href="{{ path('plus_infos_homepage') }}">Voir plus d'informations</a>
 		</div>
 		{% endblock %}
@@ -50,6 +63,7 @@
 				<a href="{{ path('fos_user_security_logout') }}">Déconnexion</a><br />
 				<a href="{{ path('documents') }}">Documents</a>
 			{% else %}
+				<h2>Connectez-vous !</h2>
 				{% render path('fos_user_security_login') %}
 			{% endif %}
 		</div>
@@ -58,7 +72,8 @@
 {% endblock %}
 
 {% block javascripts %}
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="http://sorgalla.com/jcarousel/dist/jquery.jcarousel-core.min.js"></script>
-	<script type="text/javascript" src="{{ asset('js/call.jCarousel.js') }}"></script>
+	<script src="{{ asset('vendor/jquery/jquery-1.11.2.min.js') }}"></script>
+	<script src="{{ asset('vendor/jquery/jquery-ui.min.js') }}"></script>
+	<script src="{{ asset('vendor/jquery.jcarousel.min.js') }}"></script>
+	<script src="{{ asset('js/call.jCarousel.js') }}"></script>
 {% endblock %}

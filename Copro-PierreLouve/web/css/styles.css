@@ -2,6 +2,10 @@ html {
 	min-height: 100%;
 }
 
+html * {
+box-sizing: border-box;	
+}
+
 body {
 	background: url('../images/fond.png') repeat-x bottom center;
 	background-size: 1px 100%;
@@ -70,12 +74,16 @@ h1 {
 
 /* Styles de l'accueil */
 
-#pagetop, #pagebottom {
+#pagetop {
 	display: table;
 	margin-bottom: 20px;
 }
 
-#pagetop > div, #pagebottom > div {
+#pagebottom {
+	overflow: hidden;
+}
+
+#pagetop > div {
 	display: table-cell;
 }
 
@@ -89,11 +97,19 @@ h1 {
 }
 
 #texteAccueil {
-	padding: 20px 30px;
+	padding: 20px 20px;
 	border: 1px solid #d4d4d4;
 	vertical-align: top;
 	color: #999999;
-	font-size: 1.1rem;
+	font-family: Arial, sans-serif;
+	font-size: 1.2rem;
+}
+
+#texteAccueil p {
+	line-height: 2;
+	font-size: 1.4rem;
+	font-style: italic;
+	text-align: justify;
 }
 
 #texteAccueil h2 {
@@ -106,7 +122,7 @@ h1 {
 	display: block;
 	text-align: center;
 	padding: 5px 10px;
-	margin: 10px auto;
+	margin: 30px auto;
 	width: 80%;
 	border: 3px solid #146665;
 	color: #146665;
@@ -121,7 +137,9 @@ h1 {
 }
 
 #actus {
-	width: 428px;
+	float: left;
+	position: relative;
+	width: 60%;
 	border: 1px solid #cecece;
 	padding: 50px 30px;
 	background: #fff;
@@ -174,9 +192,16 @@ section.isWithAside {
 
 /* Formulaires */
 
-#connexion form {
+#connexion {
 	background: #9dcdc9;
-	padding: 25px 20px;
+	padding: 15px 15px;
+	float: right;
+	width: 38%;
+}
+
+#connexion h2 {
+	text-align: center;
+	color: #146665;
 }
 
 form {
@@ -209,12 +234,64 @@ form label.required:after {
 form input, form textarea {
 	padding: 2px 5px;
 	font-size: 1.2rem;
-	font-family: Arial, sans-serif;	
+	font-family: Arial, sans-serif;
 	min-width: 150px;
 }
 
 form input[type="submit"] {
 	display: inline-block;
+}
+
+/* jCarousel */
+
+.diaporama-wrapper {
+	position: relative;
+}
+
+.diaporama {
+	display: block !important;
+	position: relative;
+	overflow: hidden;
+	width: 626px;
+	height: 470px;
+}
+
+.diaporama ul {
+	width: 20000em;
+	position: relative;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.diaporama li {
+	float: left;
+}
+
+.diaporama-pagination {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	margin: 10px;
+}
+
+.diaporama-pagination .page {
+	display: inline-block;
+	background: #fff;
+	color: #fff;
+	border-radius: 10px;
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+	text-align: center;
+	text-decoration: none;
+	/* color: #146665; */
+}
+
+.diaporama-pagination .page.active {
+	background: #146665;
+	color: #146665;
+	/* color: #fff; */
 }
 
 /* Footer */

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Coteaux de Chasse{% endblock %}</title>
         <link rel="stylesheet" href="{{ asset('css/reset.css') }}" type="text/css" />
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}" type="text/css" />
         {% block stylesheets %}{% endblock %}
@@ -16,8 +16,8 @@
 
 	    		{% block menu %}
 	    			<ul id="menu">
-	    				<li>Actualités</li>
-	    				<li>Agenda</li>
+	    				<li><a href="{{ path('actus_homepage') }}">Actualités</a></li>
+	    				<li><a href="{{ path('documents') }}">Documents</a></li>
 	    				<li><a href="{{ path('contact') }}">Contact</a></li>
 	    			</ul>
 	    		{% endblock %}
