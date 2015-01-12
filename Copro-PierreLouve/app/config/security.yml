@@ -3,9 +3,8 @@ security:
         FOS\UserBundle\Model\UserInterface: sha512
 
     role_hierarchy:
-        ROLE_COPRO: ROLE_COPRO
-        ROLE_GEST:  [ROLE_GEST, ROLE_COPRO]
-        ROLE_ADMIN: [ROLE_COPRO, ROLE_GEST, ROLE_ADMIN]
+        ROLE_GEST:  ROLE_COPRO
+        ROLE_ADMIN: [ROLE_COPRO, ROLE_GEST]
 
     providers:
         fos_userbundle:

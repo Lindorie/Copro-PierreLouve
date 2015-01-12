@@ -87,6 +87,16 @@ h1 {
 	display: table-cell;
 }
 
+.table {
+	display: table;
+	margin: 10px 0;
+}
+
+.cell {
+	display: table-cell;
+}
+
+
 #diaporama {
 	width: 626px;
 	padding-right: 15px;
@@ -190,19 +200,42 @@ section.isWithAside {
 	float: left;
 }
 
-/* Formulaires */
+/* Connexion accueil */
 
 #connexion {
 	background: #9dcdc9;
 	padding: 15px 15px;
 	float: right;
 	width: 38%;
+	font-family: Arial, sans-serif;
+	position: relative;
+	overflow: hidden;
 }
 
 #connexion h2 {
 	text-align: center;
 	color: #146665;
 }
+
+#connexion a {
+	color: #fff;
+	text-decoration: none;
+}
+
+#connexion a:hover {
+	background: #146665;
+}
+
+#connexion .deco {
+	float: right;
+	
+}
+
+.choix {
+	margin: 15px 0;
+}
+
+/* Formulaires */
 
 form {
 	text-align: center;
