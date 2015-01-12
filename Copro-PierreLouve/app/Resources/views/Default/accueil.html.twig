@@ -47,7 +47,10 @@
 			{% for actu in actus %}
 				<div class="actu" id="actu{{ actu.id }}">
 					{# ici rajouter la photo d'illustration #}
-
+					{% if actu.extension == null %}
+					{% else %}
+					<a href=""><img src="{{ ("./data/images/" ~ actu.filename) | imagine_filter('actu_accueil') }}" /></a>
+					{% endif %}
 					<h3>{{ actu.titre }}</h3>
 					<p>{{ actu.date|date("d/m/Y") }}</p>
 					<p>{{ actu.texte }}</p>

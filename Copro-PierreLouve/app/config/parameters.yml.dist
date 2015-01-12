@@ -20,3 +20,4 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
     
     doc_dir: "%kernel.root_dir%/../data"
+    img_dir: "%kernel.root_dir%/../data/images"

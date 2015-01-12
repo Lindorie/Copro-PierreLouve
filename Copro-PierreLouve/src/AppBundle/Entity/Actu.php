@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Actu
@@ -27,6 +28,18 @@ class Actu
      * @ORM\Column(name="titre", type="string", length=255)
      */
     private $titre;
+    
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
+    public $file;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="extension", type="string", length=5)
+     */
+    private $extension;
 
     /**
      * @var string
@@ -154,5 +167,49 @@ class Actu
         $this->auteur = $auteur;
 
         return $this;
+    }
+    
+    public function upload($directory)
+    {
+    	// la propriété « file » peut être vide si le champ n'est pas requis
+    	if (null === $this->file) {
+    		return;
+    	}
+    	if ($this->extension === null) {
+    		$this->retrieveSetExtension();
+    	}
+    	$this->file->move($directory, $this->id.".".$this->extension);
+    	 
+    }
+    public function getFileName() {
+    	$fichier = $this->id.".".$this->extension;
+    	return $fichier;
+    }
+    
+    public function retrieveSetExtension() {
+    	$this->extension = pathinfo($this->file->getClientOriginalName(), PATHINFO_EXTENSION);
+    }
+
+    /**
+     * Set extension
+     *
+     * @param string $extension
+     * @return Actu
+     */
+    public function setExtension($extension)
+    {
+        $this->extension = $extension;
+
+        return $this;
+    }
+
+    /**
+     * Get extension
+     *
+     * @return string 
+     */
+    public function getExtension()
+    {
+        return $this->extension;
     }
 }
