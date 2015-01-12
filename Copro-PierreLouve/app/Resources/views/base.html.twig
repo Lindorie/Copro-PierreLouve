@@ -41,6 +41,42 @@
        							Contenu de la colonne (effacez ce texte SVP, il faut le surcharger par du vrai contenu...)
        						{% endblock %}
        					</div>
+       					
+       					{% block connexion %}
+						<div id="connexion">
+							{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+								<span class="bonjour">Bonjour, <strong>{{ app.user.username }}</strong> !</span>
+								<span class="deco"><a href="{{ path('fos_user_security_logout') }}">déconnexion</a></span>
+								
+								<p>Que souhaitez-vous faire ?</p>
+								<div class="choix">
+									<ul class="docs">
+										<li><a href="{{ path('documents') }}">Consulter mes documents</a></li>
+										{% if is_granted('ROLE_ADMIN') %}
+											<li><a href="#">Gérer les documents</a></li>
+										{% endif %}
+									</ul>
+										
+									<ul class="users">
+										{% if is_granted('ROLE_ADMIN') %}
+											<li><a href="#">Gérer les utilisateurs</a></li>
+										{% endif %}
+										{% if is_granted('ROLE_GEST') %}
+											<li><a href="#">Gérer les copropriétaires</a></li>
+										{% endif %}
+									</ul>
+								</div>
+									
+									{% if is_granted('ROLE_COPRO') %}
+									
+									{% endif %}
+								
+							{% else %}
+								<h2>Connectez-vous !</h2>
+								{% render path('fos_user_security_login') %}
+							{% endif %}
+						</div>
+						{% endblock %}
        				</aside>
        			{% endblock %}
        			

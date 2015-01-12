@@ -205,11 +205,23 @@ section.isWithAside {
 #connexion {
 	background: #9dcdc9;
 	padding: 15px 15px;
-	float: right;
-	width: 38%;
 	font-family: Arial, sans-serif;
 	position: relative;
 	overflow: hidden;
+}
+
+.accueil #connexion {
+	float: right;
+	width: 38%;
+}
+
+aside #connexion {
+	margin: 20px 0;
+}
+
+aside #connexion label, aside #connexion input {
+	min-width: inherit;
+	display: inherit;
 }
 
 #connexion h2 {
