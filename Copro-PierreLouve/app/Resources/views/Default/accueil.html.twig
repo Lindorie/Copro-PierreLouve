@@ -59,9 +59,13 @@
 		{% block connexion %}
 		<div id="connexion">
 			{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-				Connecté ({{ app.user.username }})<br />
-				<a href="{{ path('fos_user_security_logout') }}">Déconnexion</a><br />
-				<a href="{{ path('documents') }}">Documents</a>
+				Bonjour, <strong>{{ app.user.username }}</strong> !<br />
+				<p>Que souhaitez-vous faire ?</p>
+				<ul>
+					<li><a href="{{ path('fos_user_security_logout') }}">Me déconnecter</a></li>
+					<li><a href="{{ path('documents') }}">Consulter mes documents</a></li>
+				</ul>
+				
 			{% else %}
 				<h2>Connectez-vous !</h2>
 				{% render path('fos_user_security_login') %}
