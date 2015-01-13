@@ -77,6 +77,10 @@ liip_imagine:
     resolvers:
        default:
           web_path: ~
+    loaders:
+       default:
+          filesystem:
+            data_root: %img_dir%
 
     filter_sets:
         cache: ~

@@ -13,9 +13,8 @@ class ActuController extends Controller
     	$em = $this->getDoctrine()->getManager();
     	$actusRepository = $em->getRepository('AppBundle:Actu');
     	$actus = $actusRepository->findBy(array(), array('date' => 'desc'), 10);
-    	$img = $this->container->getParameter('img_dir') . '/';
 
-        return $this->render('Actu/index.html.twig', array('actus' => $actus, 'imgDir' => $img));
+        return $this->render('Actu/index.html.twig', array('actus' => $actus));
     }
 
     public function createAction(Request $request) {
@@ -60,6 +59,7 @@ class ActuController extends Controller
     
     $form = $this->createFormBuilder($actu)
     						->add('titre', 'text', array('data' => $actu->getTitre()))
+    						->add('file', 'file', array('label' => 'Modifier l\'image'))
     						->add('texte', 'textarea')
     						->getForm();
 
@@ -71,9 +71,11 @@ class ActuController extends Controller
 	    		$actu->getDate();
 	    		$userlog = $this->getUser();
 	    		$actu->setAuteur($userlog);
+	    		$actu->retrieveSetExtension();
 	    		$em = $this->getDoctrine()->getManager();
 	    		$em->persist($actu);
 	    		$em->flush();
+	    		$actu->upload($this->container->getParameter('img_dir'));
 	    		$this->get('session')->getFlashBag()->add(
 	    				'notice',
 	    				'L\'actualité a bien été modifiée.'

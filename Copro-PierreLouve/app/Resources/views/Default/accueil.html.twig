@@ -46,10 +46,8 @@
 			<h2>Actualités</h2>
 			{% for actu in actus %}
 				<div class="actu" id="actu{{ actu.id }}">
-					{# ici rajouter la photo d'illustration #}
-					{% if actu.extension == null %}
-					{% else %}
-					<a href=""><img src="{{ ("./data/images/" ~ actu.filename) | imagine_filter('actu_accueil') }}" /></a>
+					{% if actu.extension != null %}
+						<img src="{{ (actu.filename) | imagine_filter('actu_accueil') }}" />
 					{% endif %}
 					<h3>{{ actu.titre }}</h3>
 					<p>{{ actu.date|date("d/m/Y") }}</p>
@@ -60,39 +58,7 @@
 		{% endblock %}
 
 		{% block connexion %}
-		<div id="connexion">
-			{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-				<span class="bonjour">Bonjour, <strong>{{ app.user.username }}</strong> !</span>
-				<span class="deco"><a href="{{ path('fos_user_security_logout') }}">déconnexion</a></span>
-				
-				<p>Que souhaitez-vous faire ?</p>
-				<div class="choix">
-					<ul class="docs">
-						<li><a href="{{ path('documents') }}">Consulter mes documents</a></li>
-						{% if is_granted('ROLE_ADMIN') %}
-							<li><a href="#">Gérer les documents</a></li>
-						{% endif %}
-					</ul>
-						
-					<ul class="users">
-						{% if is_granted('ROLE_ADMIN') %}
-							<li><a href="#">Gérer les utilisateurs</a></li>
-						{% endif %}
-						{% if is_granted('ROLE_GEST') %}
-							<li><a href="#">Gérer les copropriétaires</a></li>
-						{% endif %}
-					</ul>
-				</div>
-					
-					{% if is_granted('ROLE_COPRO') %}
-					
-					{% endif %}
-				
-			{% else %}
-				<h2>Connectez-vous !</h2>
-				{% render path('fos_user_security_login') %}
-			{% endif %}
-		</div>
+			{{ include('connexion.html.twig') }}
 		{% endblock %}
 	</div>
 {% endblock %}

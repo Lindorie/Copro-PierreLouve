@@ -32,7 +32,7 @@ document_dl:
       id: \d+
     
 documents_add:
-    path: /documents/add
+    path: /admin/documents/add
     defaults: { _controller: AppBundle:Document:add }
     
 plus_infos_homepage:
