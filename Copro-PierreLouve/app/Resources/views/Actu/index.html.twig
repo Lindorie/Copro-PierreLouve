@@ -8,16 +8,20 @@
 {% block aside_title "" %}
 {% block aside_content "" %}
 <div id="actus">
-	<h2>Actualités</h2>
 		{% for actu in actus %}
-			<div class="actu" id="actu{{ actu.id }}">
+			<div class="liste" id="actu{{ actu.id }}">
 				{% if actu.extension != null %}
 					<img src="{{ (actu.filename) | imagine_filter('actu_accueil') }}" />
 				{% endif %}
 				<div>
 					<h3>{{ actu.titre }}</h3>
 					<p class="texte">{{ actu.texte }}</p>
-					<p class="infos">{{ actu.date|date("d/m/Y") }} <a class="modifier" href="{{ path('actus_modif', {actuId: actu.id}) }}">Modifier</a></p>
+					
+					{% if is_granted('ROLE_ADMIN') %}
+						<p class="infos">{{ actu.date|date("d/m/Y") }} <a class="modifier" href="{{ path('actus_modif', {actuId: actu.id}) }}">Modifier</a> <a class="modifier" href="{{ path('actus_delete', {actuId: actu.id}) }}">Supprimer</a></p>
+					{% else %}
+						<p class="infos">{{ actu.date|date("d/m/Y") }}</p>
+					{% endif %}
 				</div>
 			</div>
 		{% endfor %}

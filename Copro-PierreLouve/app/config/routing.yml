@@ -19,6 +19,12 @@ actus_modif:
     defaults: { _controller: AppBundle:Actu:modifActu }
     requirements:
       id: \d+
+      
+actus_delete:
+    path: /admin/actus/delete/{actuId}
+    defaults: { _controller: AppBundle:Actu:deleteActu }
+    requirements:
+      id: \d+
 
 
 documents:
@@ -28,6 +34,12 @@ documents:
 document_dl:
     path: /document/{docId}
     defaults: { _controller: AppBundle:Document:downloadFile }
+    requirements:
+      id: \d+
+      
+document_delete:
+    path: /admin/document/{docId}
+    defaults: { _controller: AppBundle:Document:delete }
     requirements:
       id: \d+
     

@@ -1,14 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}<h2>Liste des documents</h2>
+{% block section_title "Liste des documents" %}
+{% block section_content %}
+
+{% block aside_title "" %}
+{% block aside_content "" %}
+
 	{% for docu in docus %}
-		<div class="docu" id="docu{{ docu.id }}">
+		<div class="liste" id="docu{{ docu.id }}">
 			<h3>{{ docu.titre }}</h3>
 			<a href="{{ path('document_dl', {docId: docu.id}) }}">Télécharger le document</a>
 			<p>{{ docu.description }}</p>
+			{% if is_granted('ROLE_ADMIN') %}
+				<p class="infos"><a class="modifier" href="{{ path('document_delete', {docId: docu.id}) }}">Supprimer</a></p>
+			{% endif %}
 		</div>
 	{% endfor %}
 
 {% endblock %}
-
-

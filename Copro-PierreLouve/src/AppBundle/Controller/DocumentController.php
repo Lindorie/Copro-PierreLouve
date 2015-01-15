@@ -116,4 +116,27 @@ class DocumentController extends Controller
     	$response->setContent($content);
     	return $response;
     }
+    
+
+    public function deleteAction($docId)
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$docsRepository = $em->getRepository('AppBundle:Document');
+    	$doc = $docsRepository->findOneById($docId);
+    	// supprimer le document en base + physique
+    	$path = $this->container->getParameter('doc_dir')."/".$doc->getFileName();
+    	if (file_exists($path)) {
+    		unlink($path); 
+    	}
+    	$em->remove($doc);
+    	$em->flush();
+    	//var_dump(get_class($doc));die;
+    	
+    	$this->get('session')->getFlashBag()->add(
+    			'notice',
+    			'Le document a bien été supprimé.'
+    	);
+
+    	return $this->redirect($this->generateUrl('homepage'));
+    }
 }

@@ -86,5 +86,24 @@ class ActuController extends Controller
     return $this->render('Actu/form_modif.html.twig', array('actus' => $actu, 'form' => $form->createView()));
     
     }
+    
+    // fonction de suppression
+    public function deleteActuAction($actuId) {
+    
+    	$em = $this->getDoctrine()->getManager();
+    	$actusRepository = $em->getRepository('AppBundle:Actu');
+    	$actu = $actusRepository->findOneById($actuId);
+    	$em->remove($actu);
+    	$em->flush();
+    	//var_dump($actuId);die;
+    	
+    	$this->get('session')->getFlashBag()->add(
+    			'notice',
+    			'L\'actualité a bien été supprimée.'
+    	);
+    	
+    	return $this->redirect($this->generateUrl('homepage'));
+    
+    }
 
 }

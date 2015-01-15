@@ -45,7 +45,7 @@
 		<div id="actus">
 			<h2>Actualités</h2>
 			{% for actu in actus %}
-				<div class="actu" id="actu{{ actu.id }}">
+				<div class="liste" id="actu{{ actu.id }}">
 					{% if actu.extension != null %}
 						<img src="{{ (actu.filename) | imagine_filter('actu_accueil') }}" />
 					{% endif %}

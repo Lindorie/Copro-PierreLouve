@@ -161,7 +161,7 @@ h1 {
 	margin: 0;
 }
 
-#actus h3 {
+.liste h3 {
 	font-size: 1.7rem;
 	color: #977e68;
 	font-weight: bold;
@@ -175,7 +175,7 @@ h1 {
 	margin: 0;
 }
 
-#actus .infos {
+.liste .infos {
 	font-size: 1.1rem;
 	color: #146665;
 	padding: 3px 5px;
@@ -185,35 +185,35 @@ h1 {
 	overflow: hidden;
 }
 
-#actus .texte {
+.texte {
 	color: #444;
 	font-size: 1.4rem;
 	margin: 0;
 }
 
-.accueil #actus .actu {
+.accueil #actus .liste {
 	margin: 0 0 20px 0;
 	border: 0;
 	padding: 0;
 	overflow: hidden;
 }
 
-#actus .actu {
+.liste {
 	margin: 20px 0;
 	border-top: 1px solid #ccc;
 	padding: 20px 0;
 }
 
-#actus .actu:first-child {
+.liste:first-child {
 	border: 0;
 }
 
-#actus .actu img {
+#actus .liste img {
 	float: left;
 	margin: 0 10px 0 0;
 }
 
-#actus .actu:last-child {
+.liste:last-child {
 	margin: 0 0 0 0;
 }
 
