@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block section_title "Gérer le diaporama" %}
+
+{% block section_content %}
+
+{% block aside_title "" %}
+{% block aside_content "" %}
+
+{% if images == null %}
+	<p>Il n'y a actuellement aucune image dans la galerie.</p>
+{% else %}
+	<div id="images">
+			{% for img in images %}
+				<div class="liste" id="img{{ img.id }}">
+					{% if img.extension != null %}
+						<img src="{{ (img.filename) | imagine_filter('miniature') }}" />
+					{% endif %}
+					<div>
+						<p class="texte">{{ img.legende }}</p>
+						<p class="infos">
+							<a href="">Retirer du diaporama</a>
+							<a href="">Supprimer l'image définitivement</a>
+						</p>
+					</div>
+				</div>
+			{% endfor %}
+	</div>
+{% endif %}
+
+
+{% endblock %}

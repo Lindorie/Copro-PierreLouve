@@ -9,6 +9,7 @@
 				<li><a href="{{ path('documents') }}">Consulter mes documents</a></li>
 				{% if is_granted('ROLE_ADMIN') %}
 					<li><a href="{{ path('documents_add') }}">Ajouter un document</a></li>
+					<li><a href="{{ path('gerer_slideshow') }}">Gérer les images du diaporama</a></li>
 				{% endif %}
 			</ul>
 			<ul class="actus">

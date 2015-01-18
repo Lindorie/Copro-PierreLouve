@@ -1,10 +1,18 @@
+# Généraux
+
 homepage:
     path:     /
     defaults: { _controller: AppBundle:Default:index }
+    
+plus_infos_homepage:
+    path:     /plusInfos
+    defaults: { _controller: AppBundle:Default:plusInfos }
 
 contact:
     path: /contact
     defaults: { _controller: AppBundle:Contact:index }
+    
+# Actus
 
 actus_homepage:
     path:     /actus
@@ -18,14 +26,15 @@ actus_modif:
     path:     /admin/actus/modif/{actuId}
     defaults: { _controller: AppBundle:Actu:modifActu }
     requirements:
-      id: \d+
+      actuId: \d+
       
 actus_delete:
     path: /admin/actus/delete/{actuId}
     defaults: { _controller: AppBundle:Actu:deleteActu }
     requirements:
-      id: \d+
+      actuId: \d+
 
+# Documents
 
 documents:
     path: /documents
@@ -35,21 +44,49 @@ document_dl:
     path: /document/{docId}
     defaults: { _controller: AppBundle:Document:downloadFile }
     requirements:
-      id: \d+
+      docId: \d+
       
 document_delete:
     path: /admin/document/{docId}
     defaults: { _controller: AppBundle:Document:delete }
     requirements:
-      id: \d+
+      docId: \d+
     
 documents_add:
     path: /admin/documents/add
     defaults: { _controller: AppBundle:Document:add }
     
-plus_infos_homepage:
-    path:     /plusInfos
-    defaults: { _controller: AppBundle:Default:plusInfos }
+# Administration 
+
+gerer_slideshow:
+    path: /admin/slideshow
+    defaults: { _controller: AppBundle:Admin:slideshow }
+
+gerer_slideshow_remove:
+    path: /admin/slideshow/remove/{imgId}
+    defaults: { _controller: AppBundle:Admin:slideshowRemoveImg }
+    requirements:
+      imgId: \d+
+
+gerer_slideshow_add:
+    path: /admin/slideshow/add/{imgId}
+    defaults: { _controller: AppBundle:Admin:slideshowAddImg }
+    requirements:
+      imgId: \d+
+      
+image_remove:
+    path: /admin/image/remove/{imgId}
+    defaults: { _controller: AppBundle:Admin:imageRemove }
+    requirements:
+      imgId: \d+
+
+image_add:
+    path: /admin/image/add/{imgId}
+    defaults: { _controller: AppBundle:Admin:imageAdd }
+    requirements:
+      imgId: \d+
+    
+# Spécifiques bundles
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
