@@ -28,9 +28,5 @@ class AdminController extends Controller
     	return $this->render('Admin/slideshow_gerer.html.twig', array('images' => $images));
     }   
      
-    public function slideshowAddImgAction()
-    {
     
-    	return $this->render('Admin/slideshow_gerer.html.twig', array('images' => $images));
-    }
 }

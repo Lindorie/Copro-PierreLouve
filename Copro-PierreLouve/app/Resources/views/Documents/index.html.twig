@@ -8,7 +8,7 @@
 
 	{% for docu in docus %}
 		<div class="liste" id="docu{{ docu.id }}">
-			<h3>{{ docu.titre }}</h3>
+			<h3>{{ docu.titre }}- {{ docu.voir }}</h3>
 			<a href="{{ path('document_dl', {docId: docu.id}) }}">Télécharger le document</a>
 			<p>{{ docu.description }}</p>
 			{% if is_granted('ROLE_ADMIN') %}

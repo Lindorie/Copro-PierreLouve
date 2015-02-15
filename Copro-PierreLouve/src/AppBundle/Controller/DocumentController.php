@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Document;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\SecurityContext;
 
 class DocumentController extends Controller
 {
@@ -14,7 +15,32 @@ class DocumentController extends Controller
     	// On cherche tous les documents
     	$em = $this->getDoctrine()->getManager();
     	$docusRepository = $em->getRepository('AppBundle:Document');
-    	$docus = $docusRepository->findBy(array(), array('type' => 'asc'));
+    	$toto = $this->get('security.context');
+ 		
+    	if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')){
+    		$userlog = $this->getUser();
+    		$userRole= $userlog->getRoles();
+    	}
+    	else{
+    		$userRole[] = 'IS_AUTHENTICATED_ANONYMOUSLY';
+    	}
+    	
+    	var_dump($userRole);
+    	
+    	if (in_array('ROLE_ADMIN', $userRole)){
+    		$docus = $docusRepository->findBy(array(), array('type' => 'asc'));
+    	}
+    	elseif (in_array('ROLE_GEST', $userRole)) {
+    		
+    		$docus = $docusRepository->findBy(array('voir' => 'ROLE_GEST','voir' => 'ROLE_COPRO','voir' => 'IS_AUTHENTICATED_ANONYMOUSLY' ), array('type' => 'asc'));
+    	}
+    	elseif (in_array('ROLE_COPRO', $userRole)) {
+    		$docus = $docusRepository->findBy(array('voir' => 'ROLE_COPRO','voir' => 'IS_AUTHENTICATED_ANONYMOUSLY' ), array('type' => 'asc'));
+    	}
+    	else {
+    		$docus = $docusRepository->findBy(array('voir' => 'IS_AUTHENTICATED_ANONYMOUSLY'), array('type' => 'asc'));
+    	}
+    	
 
         return $this->render('Documents/index.html.twig', array('docus' => $docus));
     }
@@ -139,4 +165,6 @@ class DocumentController extends Controller
 
     	return $this->redirect($this->generateUrl('homepage'));
     }
+    
+   
 }
