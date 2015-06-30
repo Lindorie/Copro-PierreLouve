@@ -8,11 +8,26 @@
 	{{ form_start(contactForm) }}
 		<div class="form_content">
 			{{ form_errors(contactForm) }}
-			{{ form_row(contactForm.nom) }}
-			{{ form_row(contactForm.email) }}
-			{{ form_row(contactForm.message) }}
+
+            <div class="form-group">
+                {{ form_errors(contactForm.nom) }}
+                {{ form_label(contactForm.nom, "Nom", {'label_attr': {'class': 'control-label'}}) }}
+                {{ form_widget(contactForm.nom, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_errors(contactForm.email) }}
+                {{ form_label(contactForm.email, "Email", {'label_attr': {'class': 'control-label'}}) }}
+                {{ form_widget(contactForm.email, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_errors(contactForm.message) }}
+                {{ form_label(contactForm.message, "Message", {'label_attr': {'class': 'control-label'}}) }}
+                {{ form_widget(contactForm.message, {'attr': {'class': 'form-control'}}) }}
+            </div>
 		</div>
-	{{ form_end(contactForm) }}
+	{{ form_end(contactForm, {'attr': {'class': 'btn btn-success'}}) }}
 
 {% endblock %}
 

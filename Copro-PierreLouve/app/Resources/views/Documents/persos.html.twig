@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block section_title "Liste des documents attribués à un copropriétaire" %}
+    {% block section_content %}
+
+        {% block aside_title "" %}
+            {% block aside_content "" %}
+
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                    <div class="flash-notice">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+
+                {% if is_granted('ROLE_GEST') %}
+                    <div class="filter-button-group bg-info">
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <p>
+                                <span class="glyphicon glyphicon-menu-right"></span>&nbsp;<a href="{{ path('documents_adminliste') }}">Gérer les documents communs</a>
+                            </p>
+                        {% endif %}
+                        <p>
+                            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;<a href="{{ path('documents_add') }}" title="Ajouter un document">Ajouter un document</a>
+                        </p>
+                        <p>Afficher uniquement les documents du copropriétaire :
+                            <select class="filters-select-visible">
+                                <option value="*">Tous</option>
+                                {% for copro in copros %}
+                                    <option value=".{{ copro.nom }}">{{ copro.getNomPrenom }}</option>
+                                {% endfor %}
+                            </select></p>
+                    </div>
+                {% endif %}
+
+                <div class="grid">
+                    {% for docu in docus %}
+
+                        {% if docu.voir == 'IS_AUTHENTICATED_ANONYMOUSLY' %}
+                            {% set voir = 'public' %}
+                        {% elseif docu.voir == 'ROLE_ADMIN' %}
+                            {% set voir = 'administrateur' %}
+                        {% elseif docu.voir == 'ROLE_GEST' %}
+                            {% set voir = 'gestionnaire administrateur' %}
+                        {% elseif docu.voir == 'ROLE_COPRO' %}
+                            {% set voir = 'coproprietaire gestionnaire administrateur' %}
+                        {% else %}
+                            {% set voir = '' %}
+                        {% endif %}
+
+                        <div class="liste item doc {{ docu.user.nom }}" id="docu{{ docu.id }}">
+                            <h3>
+                                <a href="{{ path('document_dl', {docId: docu.id}) }}" title="Télécharger le document">
+                                    <span class="glyphicon glyphicon-circle-arrow-down"></span>&nbsp;{{ docu.titre }}
+                                </a>
+                            </h3>
+                            <p>{{ docu.description }}</p>
+                            {% if is_granted('ROLE_GEST') %}
+                                <p class="infos">
+                                    <a class="modifier" href="{{ path('documents_edit', {id: docu.id}) }}">Modifier</a>
+                                    <a class="supprimer" href="{{ path('document_delete', {docId: docu.id}) }}">Supprimer</a>
+                    <span class="pull-right help">
+                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true" title="Ce document est visible par : {{ docu.voir }}"></span>
+                    </span>&nbsp;
+                    <span class="pull-right help">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true" title="Ce document est géré par : {{ docu.gerer }}"></span>&nbsp;
+                    </span>
+                                </p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+
+            {% endblock %}

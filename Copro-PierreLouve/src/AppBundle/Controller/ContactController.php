@@ -13,7 +13,14 @@ class ContactController extends Controller
     						->add('nom', 'text')
     						->add('email', 'email')
     						->add('message', 'textarea')
-    						->add('Envoyer', 'submit')
+                            ->add('add', 'submit',
+                                array(
+                                    'label' => 'Envoyer',
+                                    'attr' => array(
+                                        'class' => 'btn btn-success pull-right'
+                                    )
+                                )
+                            )
     						->getForm();
 
 

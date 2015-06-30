@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+
+{% block section_title "Liste des utilisateurs" %}
+
+    {% block section_content %}
+
+    {% block aside_title "" %}
+        {% block aside_content "" %}
+
+
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="flash-notice alert alert-info">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+
+            <div class="bg-info alert">
+                <span class="glyphicon glyphicon-plus"></span> <a href="{{ path('users_add') }}" title="Ajouter un utilisateur">Ajouter un nouvel utilisateur</a>
+            </div>
+
+            <table class="table table-condensed table-striped table-bordered">
+                <tr>
+                    <th>Nom Prénom</th>
+                    <th>Identifiant</th>
+                    <th>Rôle</th>
+                    <th>Action</th>
+                </tr>
+                {% for user in users %}
+                    <tr>
+                        <td>
+                            {% if user.type == 'admin' %}
+                                <span class="glyphicon glyphicon-star help" title="{{ user.type }}"></span>
+                            {% else %}
+                                <span class="glyphicon glyphicon-user help" title="{{ user.type }}"></span>
+                            {% endif %}
+                            &nbsp;{{ user.nom }}&nbsp;{{ user.prenom }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>
+                            {% set userRoles =  [] %}
+                            {% for role in user.roles %}
+                                {% if role == 'ROLE_ADMIN' %}
+                                    {% set userRoles = userRoles|merge(['Administrateur']) %}
+                                {% elseif role == 'ROLE_GEST' %}
+                                    {% set userRoles = userRoles|merge(['Gestionnaire']) %}
+                                {% elseif role == 'ROLE_COPRO' %}
+                                    {% set userRoles = userRoles|merge(['Copropriétaire']) %}
+                                {% elseif role == 'ROLE_USER' %}
+
+                                {% else %}
+                                    {% set userRoles = userRoles|merge(['Inconnu']) %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if userRoles %}
+                                <a href="{{ path('role_edit', {id: user.id }) }}" title="Modifier le rôle"><span class="glyphicon glyphicon-edit"></span></a> {{ userRoles|join(' | ') }}
+                            {% else %}
+                                <a href="{{ path('role_edit', {id: user.id }) }}" title="Définir un rôle"><span class="glyphicon glyphicon-plus"></span> Définir</a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{{ path('users_edit', {userId: user.id }) }}" title="Modifier cet utilisateur"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;
+                            <a href="{{ path('users_delete', {userId: user.id }) }}" title="Supprimer cet utilisateur"><span class="glyphicon glyphicon-trash"></span></a>&nbsp;
+                            <a href="{{ path('users_reset_password', {id: user.id }) }}" title="Réinitialiser le mot de passe"><span class="glyphicon glyphicon-refresh"></span></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+        {% endblock %}

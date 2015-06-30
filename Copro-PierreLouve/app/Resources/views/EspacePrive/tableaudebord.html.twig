@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+
+{% block section_title "Tableau de bord" %}
+
+    {% block section_content %}
+
+        {% block aside_title "" %}
+        {% block aside_content "" %}
+
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="flash-notice">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+
+            <div class="infos">
+                <h3>{{ user.nom }} {{ user.prenom }}</h3>
+                <p><strong>Numéro {{ user.numero }}</strong> - {{ user.milliemes }} millièmes</p>
+                <p><strong>Téléphone(s)</strong> : {{ user.telephone1 }} {% if user.telephone2 %} - {{ user.telephone2 }} {% endif %}</p>
+                <p><strong>Email(s)</strong> : {{ user.mail1 }} {% if user.mail2 %} - {{ user.mail2 }} {% endif %}</p>
+
+                <p class="pull-right">
+                    <a href="{{ path('fos_user_change_password') }}" title="Modifier le mot de passe" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp;Modifier le mot de passe
+                    </a>
+                </p>
+                <p>
+                    <a href="{{ path('user_edit_own', {id: user.id }) }}" title="Modifier mes informations de contact">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp;Modifier mes informations de contact
+                    </a>
+                </p>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="mes_documents user">
+                    <h3>Mes documents</h3>
+                    Derniers documents :
+                    <ul>
+                        {% if docus_persos == false %}
+                            <li>Aucun document dans votre espace</li>
+                        {% endif %}
+                        {% for docp in docus_persos %}
+                            <li><a href="{{ path('document_dl', {docId: docp.id}) }}">{{ docp.titre }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="documents">
+                    <h3>Documents copropriété</h3>
+                    Derniers documents :
+                    <ul>
+                        {% for docu in docus %}
+                            <li><a href="{{ path('document_dl', {docId: docu.id}) }}">{{ docu.titre }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <a class="pull-right" href="{{ path('documents') }}">Tous les documents</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="bg-info bureau_syndical">
+                <span class="glyphicon glyphicon-briefcase"></span>&nbsp;<a href="{{ path('bureau_syndical') }}">Le bureau syndical</a>
+            </div>
+    {% endblock %}

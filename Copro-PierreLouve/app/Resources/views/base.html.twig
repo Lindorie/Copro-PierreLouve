@@ -4,11 +4,13 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Coteaux de Chasse{% endblock %}</title>
         <link rel="stylesheet" href="{{ asset('css/reset.css') }}" type="text/css" />
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}" type="text/css" />
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-    <body class="{% block body_class %}BFforever{% endblock %}">
+    <body class="{% block body_class %}{% endblock %}">
     	<div id="page">
     		<div id="header">
     			<h1>Copropriété Coteaux de chasse L'isle d'Abeau</h1>
@@ -17,6 +19,7 @@
 	    		{% block menu %}
 	    			<ul id="menu">
 	    				<li><a href="{{ path('actus_homepage') }}">Actualités</a></li>
+	    				<li><a href="{{ path('agenda') }}">Agenda</a></li>
 	    				<li><a href="{{ path('documents') }}">Documents</a></li>
 	    				<li><a href="{{ path('contact') }}">Contact</a></li>
 	    			</ul>
@@ -49,10 +52,17 @@
        			{% endblock %}
        			
        		{% endblock %}
+            <div class="clearfix"></div>
        		<div id="footer">
        			<p>Réalisé par les étudiants de 2ème année du DUT MMI à Grenoble en alternance - 2014/2015</p>
        		</div>
         </div>
+
+
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="{{ asset('js/isotope.pkgd.min.js') }}"></script>
+        <script src="{{ asset('js/scripts.js') }}"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

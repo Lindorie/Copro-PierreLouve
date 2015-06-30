@@ -1,0 +1,49 @@
+{# Template de la page d'accueil #}
+{% extends 'base.html.twig' %}
+
+    {# redéfinition du titre de la page #}
+{% block section_title "Administration du site" %}
+
+    {# redéfinition du bloc sur le côté => suppression "" #}
+{% block aside_title "" %}
+{% block aside_content "" %}
+
+    {# redéfinition du bloc de contenu #}
+{% block section_content %}
+
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="flash-notice">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
+<div class="container col-lg-12">
+    <div class="col-lg-4">
+        <div class="list-group">
+            <h3><a href="{{ path('users_list') }}" class="list-group-item active">Gestion des utilisateurs</a></h3>
+            <a href="{{ path('users_add') }}" class="list-group-item">Ajouter un utilisateur</a>
+            <a href="{{ path('users_roles') }}" class="list-group-item">Gérer les rôles</a>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="list-group">
+            <h3><a href="{{ path('documents_adminliste') }}" class="list-group-item active">Gestion des documents</a></h3>
+            <a href="{{ path('documents_add') }}" class="list-group-item">Ajouter un document</a>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="list-group">
+            <h3><a href="{{ path('actus_adminliste') }}" class="list-group-item active">Gestion des actualités</a></h3>
+            <a href="{{ path('actus_create') }}" class="list-group-item">Ajouter une actualité</a>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="list-group">
+            <h3><a href="{{ path('images_admin') }}" class="list-group-item active">Gestion des images</a></h3>
+            <a href="{{ path('images_remove_cache') }}" class="list-group-item">Vider le cache</a>
+        </div>
+    </div>
+</div>
+
+{%  endblock %}

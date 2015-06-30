@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+
+{% block section_title "Bureau syndical" %}
+
+    {% block section_content %}
+
+        {% block aside_title "" %}
+            {% block aside_content "" %}
+
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                    <div class="flash-notice">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+
+                Cette page n'a pas encore de contenu.
+            {% endblock %}

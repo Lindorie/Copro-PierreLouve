@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block section_title "Modifier le document" %}
+{% block section_content %}
+
+{% block aside_title "" %}
+{% block aside_content "" %}
+
+    {# {{ form(form) }} #}
+
+    {{ form_start(form, {'class': 'form-horizontal col-sm-12 container', 'attr': {'class': 'form-horizontal'}}) }}
+    <div class="form_content">
+        {{ form_errors(form) }}
+
+
+        <div class="form-group">
+            {{ form_errors(form.titre) }}
+            {{ form_label(form.titre, "Titre", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form.titre, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_errors(form.description) }}
+            {{ form_label(form.description, "Description", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_errors(form.type) }}
+            {{ form_label(form.type, "Type", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_errors(form.gerer) }}
+            {{ form_label(form.gerer, "Qui gère ?", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form.gerer, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_errors(form.voir) }}
+            {{ form_label(form.voir, "Qui voit ?", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form.voir, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_errors(form.file) }}
+            {{ form_label(form.file, "Modifier le document", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form.file) }}
+            </div>
+        </div>
+
+        <div class="alert alert-info">En cas de document personnel attribué à un copropriétaire :</div>
+        <div class="form-group">
+            {{ form_errors(form.user) }}
+            {{ form_label(form.user, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form.user, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <input type="submit" value="Valider" class="btn btn-success" />
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}

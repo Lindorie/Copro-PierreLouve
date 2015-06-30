@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block section_title "Modifier vos informations de contact" %}
+{% block section_content %}
+
+{% block aside_title "" %}
+{% block aside_content "" %}
+
+    {# {{ form(form) }} #}
+
+    {{ form_start(form, {'class': 'form-horizontal col-sm-12 container', 'attr': {'class': 'form-horizontal'}}) }}
+    <div class="form_content">
+        {{ form_errors(form) }}
+
+        <div class="form-group">
+            {{ form_errors(form.telephone1) }}
+            {{ form_label(form.telephone1, "Téléphone 1", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form.telephone1, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_errors(form.telephone2) }}
+            {{ form_label(form.telephone2, "Téléphone 2", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form.telephone2, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_errors(form.mail1) }}
+            {{ form_label(form.mail1, "Email 1", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form.mail1, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_errors(form.mail2) }}
+            {{ form_label(form.mail2, "Email 2", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form.mail2, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <input type="submit" value="Valider" class="btn btn-success" />&nbsp;<a href="{{ path('tableau_de_bord', {id: app.user.id }) }}">Retour au tableau de bord</a>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}
+
+

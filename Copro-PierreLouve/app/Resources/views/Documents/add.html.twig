@@ -1,19 +1,76 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}<h2>Ajouter un document</h2>
-	{# form(form_add) #}
-	
-	{{ form_start(form_add) }}
-		<div class="form_content">
-			{{ form_errors(form_add) }}
-			{{ form_row(form_add.titre) }}
-			{{ form_row(form_add.description) }}
-			{{ form_row(form_add.type) }}
-			{{ form_row(form_add.file) }}
-			{{ form_row(form_add.gerer) }}
-			{{ form_row(form_add.voir) }}
-		</div>
-	{{ form_end(form_add) }}
-{% endblock %}
+{% block section_title "Ajouter un document" %}
+{% block section_content %}
 
+{% block aside_title "" %}
+{% block aside_content "" %}
+
+    {# {{ form(form) }} #}
+
+    {{ form_start(form_add, {'class': 'form-horizontal col-sm-12 container', 'attr': {'class': 'form-horizontal col-sm-12 container'}}) }}
+    <div class="form_content">
+        {{ form_errors(form_add) }}
+
+        <div class="form-group">
+            {{ form_errors(form_add.titre) }}
+            {{ form_label(form_add.titre, "Titre", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form_add.titre, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_errors(form_add.description) }}
+            {{ form_label(form_add.description, "Description", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form_add.description, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_errors(form_add.type) }}
+            {{ form_label(form_add.type, "Type", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form_add.type, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_errors(form_add.file) }}
+            {{ form_label(form_add.file, "Fichier", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form_add.file) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_errors(form_add.gerer) }}
+            {{ form_label(form_add.gerer, "Qui gère ?", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form_add.gerer, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_errors(form_add.voir) }}
+            {{ form_label(form_add.voir, "Qui voit ?", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form_add.voir, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="alert alert-info">En cas de document personnel attribué à un copropriétaire :</div>
+        <div class="form-group">
+            {{ form_errors(form_add.user) }}
+            {{ form_label(form_add.user, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form_add.user, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+    </div>
+    {{ form_end(form_add) }}
+
+{% endblock %}
 

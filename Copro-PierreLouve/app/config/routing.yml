@@ -22,6 +22,10 @@ actus_create:
     path:     /admin/actus/create
     defaults: { _controller: AppBundle:Actu:create }
 
+actus_adminliste:
+    path:     /admin/actus
+    defaults: { _controller: AppBundle:Actu:index }
+
 actus_modif:
     path:     /admin/actus/modif/{actuId}
     defaults: { _controller: AppBundle:Actu:modifActu }
@@ -33,6 +37,7 @@ actus_delete:
     defaults: { _controller: AppBundle:Actu:deleteActu }
     requirements:
       actuId: \d+
+
 
 # Documents
 
@@ -55,8 +60,54 @@ document_delete:
 documents_add:
     path: /admin/documents/add
     defaults: { _controller: AppBundle:Document:add }
-    
-# Administration 
+
+documents_edit:
+    path: /admin/documents/{id}/edit
+    defaults: { _controller: AppBundle:Document:edit }
+    requirements:
+      docId: \d+
+
+documents_adminliste:
+    path: /admin/documents
+    defaults: { _controller: AppBundle:Document:index }
+
+documents_perso:
+    path: /admin/documents/perso
+    defaults: { _controller: AppBundle:Document:listePerso }
+
+mes_documents:
+    path: /tableaudebord/{id}/documents
+    defaults: { _controller: AppBundle:EspacePrive:mesDocuments }
+    requirements:
+      id: \d+
+
+# Agenda
+
+agenda:
+    path: /agenda
+    defaults: { _controller: AppBundle:Agenda:index }
+
+
+# Administration
+administration:
+    path: /admin/
+    defaults: { _controller: AppBundle:Admin:index }
+
+tableau_de_bord:
+    path: /tableaudebord/{id}
+    defaults: { _controller: AppBundle:EspacePrive:index }
+    requirements:
+      id: \d+
+
+user_edit_own:
+    path: /tableaudebord/{id}/edit
+    defaults: { _controller: AppBundle:EspacePrive:userEditOwn }
+    requirements:
+      id: \d+
+
+bureau_syndical:
+    path: /bureau-syndical
+    defaults: { _controller: AppBundle:EspacePrive:bureauSyndical }
 
 gerer_slideshow:
     path: /admin/slideshow
@@ -85,7 +136,50 @@ image_add:
     defaults: { _controller: AppBundle:Admin:imageAdd }
     requirements:
       imgId: \d+
-    
+
+users_list:
+  path: /admin/users
+  defaults: { _controller: AppBundle:Users:index }
+
+users_add:
+  path: /admin/users/add
+  defaults: { _controller: AppBundle:Users:add }
+
+users_edit:
+  path: /admin/users/edit/{userId}
+  defaults: { _controller: AppBundle:Users:edit }
+  requirements:
+    userId: \d+
+
+users_delete:
+  path: /admin/users/delete/{userId}
+  defaults: { _controller: AppBundle:Users:delete }
+  requirements:
+    userId: \d+
+
+users_reset_password:
+   path: /admin/users/{id}/reset
+   defaults: { _controller: AppBundle:Users:resetPassword }
+   requirements:
+      id: \d+
+
+role_edit:
+  path: /admin/users/{id}/role_edit
+  defaults: { _controller: AppBundle:Users:roleEdit }
+
+coproprietaires_liste:
+  path: /admin/coproprietaires
+  defaults: { _controller: AppBundle:Admin:coproprietairesListe }
+
+# Images
+images_remove_cache:
+  path: /admin/images/remove-cache
+  defaults: { _controller: AppBundle:Images:removeCache }
+
+images_admin:
+  path: /admin/images
+  defaults: { _controller: AppBundle:Images:index }
+
 # Spécifiques bundles
 
 fos_user:

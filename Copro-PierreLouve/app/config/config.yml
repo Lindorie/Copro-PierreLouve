@@ -87,8 +87,8 @@ liip_imagine:
         actu_accueil:
             quality: 75
             filters:
-                thumbnail: { size: [100, 100], mode: outbound }
+                thumbnail: { size: [170, 130], mode: outbound }
         miniature:
             quality: 75
             filters:
-                thumbnail: { size: [150,150], mode: outbound }
+                thumbnail: { size: [50,50], mode: outbound }

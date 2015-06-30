@@ -1,18 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
+{% block section_title "Modifier une actualité" %}
+{% block section_content %}
 
-<h2>{% block section_title "Modifier une actualité" %}</h2>
+{% block aside_title "" %}
+{% block aside_content "" %}
 
 {# {{ form(form) }} #}
 
-{{ form_start(form) }}
+{{ form_start(form, {'class': 'form-horizontal col-sm-12 container', 'attr': {'class': 'form-horizontal'}}) }}
 	<div class="form_content">
 		{{ form_errors(form) }}
-		{{ form_row(form.titre) }}
-		{{ form_row(form.file) }}
-		{{ form_row(form.texte) }}
-		<input type="submit" value="Valider" />
+
+        <div class="form-group">
+            {{ form_errors(form.titre) }}
+            {{ form_label(form.titre, "Titre", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form.titre, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_errors(form.texte) }}
+            {{ form_label(form.texte, "Texte", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form.texte, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="text-center col-sm-4">
+            <strong>Image actuelle</strong> <br />
+            {% if actu.extension != null %}
+                <img src="{{ (actu.filename) | imagine_filter('actu_accueil') }}" />
+            {% endif %}
+        </div>
+        <div class="form-group col-sm-8">
+                {{ form_errors(form.file) }}
+                {{ form_label(form.file, "Modifier l'image", {'label_attr': {'class': 'text-left control-label'}}) }}
+                {{ form_widget(form.file) }}
+        </div>
+
+		<input type="submit" value="Valider" class="btn btn-success" />
 	</div>
 {{ form_end(form) }}
 

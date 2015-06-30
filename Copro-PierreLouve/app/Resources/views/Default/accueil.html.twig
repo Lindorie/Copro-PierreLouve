@@ -49,8 +49,8 @@
 					{% if actu.extension != null %}
 						<img src="{{ (actu.filename) | imagine_filter('actu_accueil') }}" />
 					{% endif %}
+                    <p class="pull-right">{{ actu.date|date("d/m/Y") }}</p>
 					<h3>{{ actu.titre }}</h3>
-					<p>{{ actu.date|date("d/m/Y") }}</p>
 					<p>{{ actu.texte }}</p>
 				</div>
 			{% endfor %}

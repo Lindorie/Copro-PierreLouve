@@ -63,7 +63,7 @@ class ActuController extends Controller
     						->add('texte', 'textarea')
     						->getForm();
 
-    		$form->handleRequest($request);
+        $form->handleRequest($request);
     		
     
     	if ($form->isValid()) {
@@ -83,7 +83,7 @@ class ActuController extends Controller
 	    		return $this->redirect($this->generateUrl('homepage'));
     	}
     	
-    return $this->render('Actu/form_modif.html.twig', array('actus' => $actu, 'form' => $form->createView()));
+    return $this->render('Actu/form_modif.html.twig', array('actu' => $actu, 'form' => $form->createView()));
     
     }
     

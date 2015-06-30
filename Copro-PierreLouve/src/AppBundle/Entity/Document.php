@@ -43,7 +43,7 @@ class Document
      * @ORM\Column(name="type", type="text")
      */
     private $type;
-    
+
     /**
      * @var string
      *
@@ -57,7 +57,7 @@ class Document
      * @ORM\Column(name="voir", type="string", length=255)
      */
     private $voir;
-    
+
     /**
      * @Assert\File(maxSize="6000000")
      */
@@ -65,15 +65,32 @@ class Document
 
     /**
      * @var string
-     * 
+     *
      * @ORM\Column(name="extension", type="string", length=5)
      */
     private $extension;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="docs")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     **/
+    private $user;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime")
+     */
+    private $date;
+
+    public function __construct()
+    {
+        $this->date = new \DateTime();
+    }
+    /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -96,7 +113,7 @@ class Document
     /**
      * Get titre
      *
-     * @return string 
+     * @return string
      */
     public function getTitre()
     {
@@ -119,7 +136,7 @@ class Document
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -142,10 +159,11 @@ class Document
     /**
      * Get gerer
      *
-     * @return string 
+     * @return string
      */
     public function getGerer()
     {
+
         return $this->gerer;
     }
 
@@ -165,7 +183,7 @@ class Document
     /**
      * Get voir
      *
-     * @return string 
+     * @return string
      */
     public function getVoir()
     {
@@ -188,13 +206,13 @@ class Document
     /**
      * Get type
      *
-     * @return string 
+     * @return string
      */
     public function getType()
     {
         return $this->type;
     }
-    
+
     public function upload($directory)
     {
     	// la propriété « file » peut être vide si le champ n'est pas requis
@@ -202,19 +220,88 @@ class Document
     		return;
     	}
 		if ($this->extension === null) {
-			$this->retrieveSetExtension();	
+			$this->retrieveSetExtension();
 		}
     	$this->file->move($directory, $this->id.".".$this->extension);
-    	
+
     }
 	public function getFileName() {
 		$fichier = $this->id.".".$this->extension;
 		return $fichier;
 	}
-	
+
 	public function retrieveSetExtension() {
 		$this->extension = pathinfo($this->file->getClientOriginalName(), PATHINFO_EXTENSION);
 	}
-	
-    
+
+
+
+    /**
+     * Set extension
+     *
+     * @param string $extension
+     * @return Document
+     */
+    public function setExtension($extension)
+    {
+        $this->extension = $extension;
+
+        return $this;
+    }
+
+    /**
+     * Get extension
+     *
+     * @return string
+     */
+    public function getExtension()
+    {
+        return $this->extension;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return Document
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime 
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     * @return Document
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

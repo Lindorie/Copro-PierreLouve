@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block section_title "Rôles" %}
+{% block section_content %}
+
+{% block aside_title "" %}
+{% block aside_content "" %}
+
+    <h3>{{ user.nom }} {{ user.prenom }}</h3>
+
+    {{ form_start(form) }}
+    <div class="form_content">
+        {{ form_errors(form) }}
+
+        <div class="form-group">
+            {{ form_errors(form.roles) }}
+            <div class="col-sm-9">
+                {% for role in form.roles %}
+                    <p>
+                        {{ form_label(role) }}
+                        {{ form_errors(role) }}
+                        {{ form_widget(role) }}
+                    </p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <p class="alert alert-danger">Le rôle "Utilisateur" ne doit pas être modifié.</p>
+        <input type="submit" value="Valider" class="btn btn-success " />
+    </div>
+    {{ form_end(form) }}
+    <a href="{{ path('users_list') }}" class="text-center">Retour à la liste des utilisateurs</a>
+{% endblock %}
+
