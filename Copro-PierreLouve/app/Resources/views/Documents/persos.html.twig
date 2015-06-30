@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block section_title "Liste de vos documents personnels" %}
+{% block section_title "Liste des documents attribués" %}
     {% block section_content %}
 
         {% block aside_title "" %}
@@ -13,7 +13,7 @@
                 {% endfor %}
 
                 {% if is_granted('ROLE_GEST') %}
-                    <div class="filter-button-group bg-info">
+                    <div class="alert alert-info">
                         {% if is_granted('ROLE_ADMIN') %}
                             <p>
                                 <span class="glyphicon glyphicon-menu-right"></span>&nbsp;<a href="{{ path('documents_adminliste') }}">Gérer les documents communs</a>
@@ -22,6 +22,13 @@
                         <p>
                             <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;<a href="{{ path('documents_add') }}" title="Ajouter un document">Ajouter un document</a>
                         </p>
+                        <p>Afficher uniquement les documents du copropriétaire :
+                            <select class="filters-select-visible">
+                                <option value="*">Tous</option>
+                                {% for copro in copros %}
+                                        <option value=".{{ copro.nom }}">{{ copro.getNomPrenom }}</option>
+                                    {% endfor %}
+                            </select></p>
                     </div>
                 {% endif %}
 
@@ -32,7 +39,7 @@
                             <h3>
                                 <a href="{{ path('document_dl', {docId: docu.id}) }}" title="Télécharger le document">
                                     <span class="glyphicon glyphicon-circle-arrow-down"></span>&nbsp;{{ docu.titre }}
-                                </a>
+                                </a> ({{ docu.user.getNomPrenom }})
                             </h3>
                             <p>{{ docu.description }}</p>
                             {% if is_granted('ROLE_GEST') %}

@@ -171,7 +171,7 @@ class EspacePriveController extends Controller
 
         $docsPersos = $query->getResult();
 
-        return $this->render('Documents/persos.html.twig', array('user' => $user, 'docus' => $docsPersos ));
+        return $this->render('EspacePrive/docs_persos.html.twig', array('user' => $user, 'docus' => $docsPersos ));
     }
 
     public function bureauSyndicalAction() {

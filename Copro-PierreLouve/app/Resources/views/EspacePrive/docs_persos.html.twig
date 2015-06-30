@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block section_title "Liste de vos documents personnels" %}
+    {% block section_content %}
+
+        {% block aside_title "" %}
+            {% block aside_content "" %}
+
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                    <div class="flash-notice">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+
+                <div class="">
+                    {% if docus %}
+                        {% for docu in docus %}
+
+                            <div class="liste item doc {{ docu.user.nom }}" id="docu{{ docu.id }}">
+                                <h3>
+                                    <a href="{{ path('document_dl', {docId: docu.id}) }}" title="Télécharger le document">
+                                        <span class="glyphicon glyphicon-circle-arrow-down"></span>&nbsp;{{ docu.titre }}
+                                    </a>
+                                </h3>
+                                <p>{{ docu.description }}</p>
+                                {% if is_granted('ROLE_GEST') %}
+                                    <p class="infos">
+                                        <a class="modifier" href="{{ path('documents_edit', {id: docu.id}) }}">Modifier</a>
+                                        <a class="supprimer" href="{{ path('document_delete', {docId: docu.id}) }}">Supprimer</a>
+                        <span class="pull-right help">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true" title="Ce document est visible par : {{ docu.voir }}"></span>
+                        </span>&nbsp;
+                        <span class="pull-right help">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true" title="Ce document est géré par : {{ docu.gerer }}"></span>&nbsp;
+                        </span>
+                                    </p>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        Vous n'avez aucun document personnel.
+                    {% endif %}
+                </div>
+
+            {% endblock %}

@@ -62,8 +62,19 @@ class DocumentController extends Controller
         )->setParameters($voir);
 
         $docus = $query->getResult();
+        $types = array();
+
+        foreach($docus as $k => $v) {
+            $type = $v->getType();
+            if (!in_array($type,$types)) {
+                $key = mb_strtolower(str_replace('\'','',str_replace(' ', '', $type)));
+                $types[$key] = $type;
+            }
+        }
+
         //var_dump($docus);
-        return $this->render('Documents/index.html.twig', array('docus' => $docus));
+
+        return $this->render('Documents/index.html.twig', array('docus' => $docus, 'types' => $types));
     }
 
     public function listePersoAction() {
@@ -106,16 +117,16 @@ class DocumentController extends Controller
     					'label' => 'Type', 
     					'choices' => 
 	    					array(
-	    						'Document public' => 'Document public',
+	    						'Public' => 'Document public',
 	    						'Document commun' => 
 	    							array(
-    									'Compte-rendu d\'AG' => 'Compte-rendu d\'AG',
-    									'Compte-rendu de réunion du conseil syndical' => 'Compte-rendu de réunion du conseil syndical',
+    									'CR AG' => 'Compte-rendu d\'AG',
+    									'CR Conseil Syndical' => 'Compte-rendu de réunion du conseil syndical',
     									'Budget' => 'Budget',
     									'Devis' => 'Devis',
-    									'Contrat d\'entretien' => 'Contrat d\'entretien',
-    									'Avis d\'échéance' => 'Avis d\'échéance',
-    									'Autre document' => 'Autre document'
+    									'Entretien' => 'Contrat d\'entretien',
+    									'Echeance' => 'Avis d\'échéance',
+    									'Autre' => 'Autre document'
 	    							),
 	    						'Document personnel' =>
 	    							array(
@@ -124,7 +135,7 @@ class DocumentController extends Controller
 	    							)
 	    						
 	    					),
-    					'data' => 'Autre document'
+    					'data' => 'Autre'
     			)
     		)
     	->add('file', 'file', array('required' => true, 'label' => 'Document'))
@@ -250,23 +261,22 @@ class DocumentController extends Controller
                     'label' => 'Type',
                     'choices' =>
                         array(
-                            'Document public' => 'Document public',
+                            'Public' => 'Document public',
                             'Document commun' =>
                                 array(
-                                    'Compte-rendu d\'AG' => 'Compte-rendu d\'AG',
-                                    'Compte-rendu de réunion du conseil syndical' => 'Compte-rendu de réunion du conseil syndical',
+                                    'CR AG' => 'Compte-rendu d\'AG',
+                                    'CR Conseil Syndical' => 'Compte-rendu de réunion du conseil syndical',
                                     'Budget' => 'Budget',
                                     'Devis' => 'Devis',
-                                    'Contrat d\'entretien' => 'Contrat d\'entretien',
-                                    'Avis d\'échéance' => 'Avis d\'échéance',
-                                    'Autre document' => 'Autre document'
+                                    'Entretien' => 'Contrat d\'entretien',
+                                    'Echeance' => 'Avis d\'échéance',
+                                    'Autre' => 'Autre document'
                                 ),
                             'Document personnel' =>
                                 array(
                                     'releve_perso' => 'Relevé de compte personnel',
                                     'autre_perso' => 'Autre document personnel'
                                 )
-
                         )
                 )
             )
