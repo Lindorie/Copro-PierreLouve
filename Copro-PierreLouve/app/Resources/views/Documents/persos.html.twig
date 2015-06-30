@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block section_title "Liste des documents attribués à un copropriétaire" %}
+{% block section_title "Liste de vos documents personnels" %}
     {% block section_content %}
 
         {% block aside_title "" %}
@@ -22,30 +22,11 @@
                         <p>
                             <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;<a href="{{ path('documents_add') }}" title="Ajouter un document">Ajouter un document</a>
                         </p>
-                        <p>Afficher uniquement les documents du copropriétaire :
-                            <select class="filters-select-visible">
-                                <option value="*">Tous</option>
-                                {% for copro in copros %}
-                                    <option value=".{{ copro.nom }}">{{ copro.getNomPrenom }}</option>
-                                {% endfor %}
-                            </select></p>
                     </div>
                 {% endif %}
 
                 <div class="grid">
                     {% for docu in docus %}
-
-                        {% if docu.voir == 'IS_AUTHENTICATED_ANONYMOUSLY' %}
-                            {% set voir = 'public' %}
-                        {% elseif docu.voir == 'ROLE_ADMIN' %}
-                            {% set voir = 'administrateur' %}
-                        {% elseif docu.voir == 'ROLE_GEST' %}
-                            {% set voir = 'gestionnaire administrateur' %}
-                        {% elseif docu.voir == 'ROLE_COPRO' %}
-                            {% set voir = 'coproprietaire gestionnaire administrateur' %}
-                        {% else %}
-                            {% set voir = '' %}
-                        {% endif %}
 
                         <div class="liste item doc {{ docu.user.nom }}" id="docu{{ docu.id }}">
                             <h3>

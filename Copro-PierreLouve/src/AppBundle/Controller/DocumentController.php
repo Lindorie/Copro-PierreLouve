@@ -175,7 +175,6 @@ class DocumentController extends Controller
     	
     	if ($form->isValid()) {
 
-
     		// sauvegarder en base
     		$em = $this->getDoctrine()->getManager();
     		$document->retrieveSetExtension();
@@ -188,7 +187,7 @@ class DocumentController extends Controller
     				'Le document a bien été ajouté.'
     		);
     		return $this->redirect($this->generateUrl('documents'));
-    	} else {echo "toto"; }
+    	}
     	
     	return $this->render('Documents/add.html.twig', array('form_add' => $form->createView()));
     }

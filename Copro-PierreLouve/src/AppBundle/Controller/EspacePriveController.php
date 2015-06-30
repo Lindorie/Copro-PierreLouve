@@ -26,35 +26,32 @@ class EspacePriveController extends Controller
             $userRole[] = 'IS_AUTHENTICATED_ANONYMOUSLY';
         }
 
+        $where = '(d.type != :type1 AND d.type != :type2) AND ';
+        $voir = array(
+            'type1' => 'releve_perso',
+            'type2' => 'autre_perso'
+        );
         if (in_array('ROLE_ADMIN', $userRole)){
-            $where = 'd.voir = :voir OR d.voir = :voir2 OR d.voir = :voir3 OR d.voir = :voir4';
-            $voir = array(
-                'voir' => 'ROLE_GEST',
-                'voir2' => 'ROLE_COPRO',
-                'voir3' => 'IS_AUTHENTICATED_ANONYMOUSLY',
-                'voir4' => 'ROLE_ADMIN'
-            );
+            $where .= '(d.voir = :voir OR d.voir = :voir2 OR d.voir = :voir3 OR d.voir = :voir4)';
+            $voir['voir'] = 'ROLE_GEST';
+            $voir['voir2'] = 'ROLE_COPRO';
+            $voir['voir3'] = 'IS_AUTHENTICATED_ANONYMOUSLY';
+            $voir['voir4'] = 'ROLE_ADMIN';
         }
         elseif (in_array('ROLE_GEST', $userRole)) {
-            $where = 'd.voir = :voir OR d.voir = :voir2 OR d.voir = :voir3';
-            $voir = array(
-                'voir' => 'ROLE_GEST',
-                'voir2' => 'ROLE_COPRO',
-                'voir3' => 'IS_AUTHENTICATED_ANONYMOUSLY'
-            );
+            $where .= '(d.voir = :voir OR d.voir = :voir2 OR d.voir = :voir3)';
+            $voir['voir'] = 'ROLE_GEST';
+            $voir['voir2'] = 'ROLE_COPRO';
+            $voir['voir3'] = 'IS_AUTHENTICATED_ANONYMOUSLY';
         }
         elseif (in_array('ROLE_COPRO', $userRole)) {
-            $where = 'd.voir = :voir2 OR d.voir = :voir3';
-            $voir = array(
-                'voir2' => 'ROLE_COPRO',
-                'voir3' => 'IS_AUTHENTICATED_ANONYMOUSLY'
-            );
+            $where .= '(d.voir = :voir2 OR d.voir = :voir3)';
+            $voir['voir2'] = 'ROLE_COPRO';
+            $voir['voir3'] = 'IS_AUTHENTICATED_ANONYMOUSLY';
         }
         else {
-            $where = 'd.voir = :voir3';
-            $voir = array(
-                'voir3' => 'IS_AUTHENTICATED_ANONYMOUSLY'
-            );
+            $where .= '(d.voir = :voir3)';
+            $voir['voir3'] = 'IS_AUTHENTICATED_ANONYMOUSLY';
         }
 
         $query = $em->createQuery(
@@ -73,7 +70,7 @@ class EspacePriveController extends Controller
         $copros = $coprosRepository->findBy(array('type' => 'coproprietaire'), array('numero' => 'asc'));
 
         // On cherche tous les documents
-        $where = '(d.type = :type1 OR d.type = :type2) AND d.id = :userId';
+        $where = '(d.type = :type1 OR d.type = :type2) AND d.user = :userId';
         $params = array();
         $params['type1'] = 'releve_perso';
         $params['type2'] = 'autre_perso';
@@ -156,7 +153,25 @@ class EspacePriveController extends Controller
         $userRepository = $em->getRepository('AppBundle:User');
         $user = $userRepository->findOneById($id);
 
-        return $this->render('EspacePrive/tableaudebord.html.twig', array('user' => $user ));
+        // On cherche tous les documents
+        $where = '(d.type = :type1 OR d.type = :type2) AND d.user = :userId';
+        $params = array();
+        $params['type1'] = 'releve_perso';
+        $params['type2'] = 'autre_perso';
+        $params['userId'] = $user;
+
+        $em = $this->getDoctrine()->getManager();
+        $em->getRepository('AppBundle:Document');
+        $query = $em->createQuery(
+            'SELECT d
+             FROM AppBundle:Document d
+             WHERE ('.$where.')
+             ORDER BY d.type ASC'
+        )->setParameters($params);
+
+        $docsPersos = $query->getResult();
+
+        return $this->render('Documents/persos.html.twig', array('user' => $user, 'docus' => $docsPersos ));
     }
 
     public function bureauSyndicalAction() {
