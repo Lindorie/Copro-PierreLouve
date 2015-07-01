@@ -105,7 +105,6 @@ class DocumentController extends Controller
 
     public function addAction(Request $request) {
 
-
     	$document = new Document();
     	$form = $this->createFormBuilder($document)
     	->add('titre')

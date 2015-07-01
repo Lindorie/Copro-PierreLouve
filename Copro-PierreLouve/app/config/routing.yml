@@ -180,6 +180,28 @@ images_admin:
   path: /admin/images
   defaults: { _controller: AppBundle:Images:index }
 
+
+# Retards de règlement
+retards:
+  path: /admin/retards
+  defaults: { _controller: AppBundle:Retard:index }
+
+retard_edit:
+  path: /admin/retard/{id}/edit
+  defaults: { _controller: AppBundle:Retard:edit }
+  requirements:
+     id: \d+
+
+retard_delete:
+  path: /admin/retard/{id}/delete
+  defaults: { _controller: AppBundle:Retard:delete }
+  requirements:
+     id: \d+
+
+retard_add:
+  path: /admin/retard/add
+  defaults: { _controller: AppBundle:Retard:add }
+
 # Spécifiques bundles
 
 fos_user:

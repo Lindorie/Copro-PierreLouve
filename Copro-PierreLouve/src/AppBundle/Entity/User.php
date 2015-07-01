@@ -35,6 +35,11 @@ class User extends BaseUser
     private $docs;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Retard", mappedBy="user")
+     **/
+    private $retards;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
@@ -429,4 +434,37 @@ class User extends BaseUser
         return $this->docs;
     }
 
+
+    /**
+     * Add retards
+     *
+     * @param \AppBundle\Entity\Retard $retards
+     * @return User
+     */
+    public function addRetard(\AppBundle\Entity\Retard $retards)
+    {
+        $this->retards[] = $retards;
+
+        return $this;
+    }
+
+    /**
+     * Remove retards
+     *
+     * @param \AppBundle\Entity\Retard $retards
+     */
+    public function removeRetard(\AppBundle\Entity\Retard $retards)
+    {
+        $this->retards->removeElement($retards);
+    }
+
+    /**
+     * Get retards
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRetards()
+    {
+        return $this->retards;
+    }
 }

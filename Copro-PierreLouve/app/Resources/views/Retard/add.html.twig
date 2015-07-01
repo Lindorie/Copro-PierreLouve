@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block section_title "Ajouter un retard" %}
+{% block section_content %}
+
+{% block aside_title "" %}
+{% block aside_content "" %}
+
+    {# {{ form(form) }} #}
+
+    {{ form_start(form, {'class': 'form-horizontal col-sm-12 container', 'attr': {'class': 'form-horizontal col-sm-12 container'}}) }}
+    <div class="form_content">
+        {{ form_errors(form) }}
+
+        <div class="form-group">
+            {{ form_errors(form.user) }}
+            {{ form_label(form.user, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form.user, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_errors(form.montant) }}
+            {{ form_label(form.montant, "Montant", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form.montant, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_errors(form.commentaire) }}
+            {{ form_label(form.commentaire, "Commentaire", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form.commentaire, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}
+

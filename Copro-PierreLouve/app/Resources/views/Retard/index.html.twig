@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block section_title "Gestion des retards de règlement" %}
+
+    {% block section_content %}
+
+        {% block aside_title "" %}
+            {% block aside_content "" %}
+
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                    <div class="flash-notice">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+
+                <div class="bg-info alert">
+                    <span class="glyphicon glyphicon-plus"></span> <a href="{{ path('retard_add') }}" title="Ajouter un retard">Ajouter un nouveau retard</a>
+                </div>
+
+                <table class="table table-condensed table-striped table-bordered">
+                    <tr>
+                        <th>Numéro</th>
+                        <th>Nom Prénom</th>
+                        <th>Montant du retard</th>
+                        <th>Date de saisie</th>
+                        <th>Commentaire</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for retard in retards %}
+                        <tr>
+                            <td>{{ retard.user.getNumero }}</td>
+                            <td>{{ retard.user.getNomPrenom }}</td>
+                            <td>{{ retard.montant }}</td>
+                            <td>{{ retard.dateSaisie|date("d/m/Y", "Europe/Paris") }}</td>
+                            <td>{{ retard.commentaire }}</td>
+                            <td>
+                                <a href="{{ path('retard_edit', {id: retard.id }) }}" title="Modifier ce retard">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                </a>&nbsp;
+                                <a href="{{ path('retard_delete', {id: retard.id }) }}" title="Supprimer ce retard">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    {% if retards is empty %}
+                        <tr>
+                            <td colspan="6">Aucun retard n'est enregistré.</td>
+                        </tr>
+                    {% endif %}
+                </table>
+
+                <div class="clearfix"></div>
+            {% endblock %}

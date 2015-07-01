@@ -21,7 +21,7 @@
                     {# Administrateur #}
                     {% if is_granted('ROLE_ADMIN') %}
                         <li><a href="{{ path('users_list') }}">Gérer les utilisateurs</a></li>
-                        <li><a href="#">Gérer les retards de règlement</a></li>
+                        <li><a href="{{ path('retards') }}">Gérer les retards de règlement</a></li>
                     {% endif %}
                     {# Administrateur et Gestionnaire #}
                     {% if is_granted('ROLE_GEST') %}
