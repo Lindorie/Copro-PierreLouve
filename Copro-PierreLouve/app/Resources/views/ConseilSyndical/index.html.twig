@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+
+{% block section_title "Conseil syndical" %}
+
+    {% block section_content %}
+
+        {% block aside_title "" %}
+            {% block aside_content "" %}
+
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                    <div class="flash-notice">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+
+                {% if conseil is empty %}
+                    <a href="{{ path('conseil_syndical_add') }}">Ajouter un conseil</a>
+                {% else %}
+                    {% for conseil in conseil %}
+                    <ul>
+                        <li><strong>Président</strong> :
+                            {% if conseil.president is empty %} -
+                            {% else %}{{ conseil.president.getNomPrenom }}
+                            {% endif %} (Alain Jacqueson)
+                        </li>
+                        <li><strong>Président adjoint</strong> :
+                            {% if conseil.vicePresident is empty %} -
+                            {% else %}{{ conseil.vicePresident.getNomPrenom }}
+                            {% endif %} (Fouad Maarouf)
+                        </li>
+                        <li><strong>Trésorier</strong> :
+                            {% if conseil.tresorier is empty %} -
+                            {% else %}{{ conseil.tresorier.getNomPrenom }}
+                            {% endif %} (-)
+                        </li>
+                        <li><strong>Trésorier adjoint</strong> :
+                            {% if conseil.viceTresorier is empty %} -
+                            {% else %}{{ conseil.viceTresorier.getNomPrenom }}
+                            {% endif %} (-)
+                        </li>
+                        <li><strong>Secrétaire</strong> :
+                            {% if conseil.secretaire is empty %} -
+                            {% else %}{{ conseil.secretaire.getNomPrenom }}
+                            {% endif %} (Peggy Bouvier)
+                        </li>
+                        <li><strong>Secrétaire adjoint</strong> :
+                            {% if conseil.viceSecretaire is empty %} -
+                            {% else %}{{ conseil.viceSecretaire.getNomPrenom }}
+                            {% endif %} (-)
+                        </li>
+                        <li><strong>Membres</strong> :
+                            <ul>
+                                {% for membre in conseil.membres %}
+                                    {{ membre.getNomPrenom }}
+                                {% endfor %}
+                                <li>Christine Alex</li>
+                                <li>Philippe Leprêtre</li>
+                                <li>Khalid Kali</li>
+                                <li>Bertrand Cizeron</li>
+                            </ul>
+                        </li>
+                    </ul>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('conseil_syndical_add_membre', {id: conseil.id }) }}" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter des membres au conseil</a><br /><br />
+                            <a href="{{ path('conseil_syndical_edit', {id: conseil.id }) }}" class="btn btn-info">Modifier le bureau du conseil</a>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
+
+            {% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block section_title "Modifier le conseil" %}
+{% block section_content %}
+
+{% block aside_title "" %}
+{% block aside_content "" %}
+
+    {# {{ form(form) }} #}
+
+    {{ form_start(form, {'class': 'form-horizontal col-sm-12 container', 'attr': {'class': 'form-horizontal col-sm-12 container'}}) }}
+    <div class="form_content">
+        {{ form_errors(form) }}
+
+        <div class="form-group">
+            {{ form_errors(form.president) }}
+            {{ form_label(form.president, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form.president, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_errors(form.vice_president) }}
+            {{ form_label(form.vice_president, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form.vice_president, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_errors(form.tresorier) }}
+            {{ form_label(form.tresorier, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form.tresorier, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_errors(form.vice_tresorier) }}
+            {{ form_label(form.vice_tresorier, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form.vice_tresorier, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_errors(form.secretaire) }}
+            {{ form_label(form.secretaire, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form.secretaire, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_errors(form.vice_secretaire) }}
+            {{ form_label(form.vice_secretaire, null, {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form.vice_secretaire, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}
+

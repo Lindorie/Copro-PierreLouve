@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+
+{% block section_title "Détail de l'entreprise" %}
+
+    {% block section_content %}
+
+        {% block aside_title "" %}
+            {% block aside_content "" %}
+
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                    <div class="flash-notice">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+
+                <h3>{{ entreprise.nom }}</h3>
+
+                <p><strong>Nom du contact</strong> : {{ entreprise.contact }}</p>
+                <p><strong>Adresse</strong> : {{ entreprise.adresse }}</p>
+                <p><strong>Email</strong> : {{ entreprise.email }}</p>
+                <p><strong>Téléphone</strong> : {{ entreprise.telephone }}</p>
+                <p><strong>Domaine</strong> : {{ entreprise.domaine }}</p>
+                <p><strong>Référencement OPAC</strong> : {% if entreprise.opac %}oui{% else %}non{% endif %}</p>
+                <p><strong>Commentaire</strong> : {{ entreprise.commentaire }}</p>
+
+                <p>
+                    <a href="{{ path('entreprise_edit', {id: entreprise.id }) }}" class="btn btn-warning" title="Modifier cette entreprise">
+                        <span class="glyphicon glyphicon-edit"></span> Modifier
+                    </a>&nbsp;
+                    <a href="{{ path('entreprise_delete', {id: entreprise.id }) }}" class="btn btn-danger" title="Supprimer cette entreprise">
+                        <span class="glyphicon glyphicon-trash"></span> Supprimer
+                    </a>
+                </p>
+                <p><a href="{{ path('entreprises') }}">Retour à la liste des entreprises</a></p>
+                <div class="clearfix"></div>
+
+
+            {% endblock %}

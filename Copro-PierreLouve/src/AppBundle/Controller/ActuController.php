@@ -31,7 +31,7 @@ class ActuController extends Controller
 
 	    	if ($form->isValid()) {
 	    		// sauvegarder en base
-	    		$actu->getDate();
+	    		//$actu->getDate();
 	    		$userlog = $this->getUser();
 	    		$actu->setAuteur($userlog);
 	    		$actu->retrieveSetExtension();

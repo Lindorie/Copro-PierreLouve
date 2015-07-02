@@ -63,6 +63,13 @@ h1 {
 	float: left;
 }
 
+#page h2 {
+    margin: 0 0 30px 0;
+}
+
+.accueil h2 {
+}
+
 #menu {
 	float: left;
 	margin: 60px 0 0 0;
@@ -187,7 +194,6 @@ h1 {
     color: #856d58;
     font-size: 2.1rem;
     text-transform: uppercase;
-    margin: 0 0 30px 0;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     letter-spacing: 2px;
 }

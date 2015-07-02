@@ -105,9 +105,31 @@ user_edit_own:
     requirements:
       id: \d+
 
-bureau_syndical:
-    path: /bureau-syndical
-    defaults: { _controller: AppBundle:EspacePrive:bureauSyndical }
+conseil_syndical:
+    path: /conseil-syndical
+    defaults: { _controller: AppBundle:ConseilSyndical:index }
+
+conseil_syndical_add:
+    path: /conseil-syndical/add
+    defaults: { _controller: AppBundle:ConseilSyndical:add }
+
+conseil_syndical_add_membre:
+    path: /conseil-syndical/{id}/add-membre
+    defaults: { _controller: AppBundle:ConseilSyndical:addMembre }
+    requirements:
+      id: \d+
+
+conseil_syndical_edit:
+    path: /conseil-syndical/{id}/edit
+    defaults: { _controller: AppBundle:ConseilSyndical:edit }
+    requirements:
+      id: \d+
+
+conseil_syndical_delete_membre:
+    path: /conseil-syndical/{id}/delete
+    defaults: { _controller: AppBundle:ConseilSyndical:deleteMembre }
+    requirements:
+      id: \d+
 
 gerer_slideshow:
     path: /admin/slideshow
@@ -201,6 +223,35 @@ retard_delete:
 retard_add:
   path: /admin/retard/add
   defaults: { _controller: AppBundle:Retard:add }
+
+
+# Entreprises
+entreprises:
+  path: /admin/entreprises
+  defaults: { _controller: AppBundle:Entreprise:index }
+
+entreprise_add:
+  path: /admin/entreprise/add
+  defaults: { _controller: AppBundle:Entreprise:add }
+
+entreprise_edit:
+  path: /admin/entreprise/{id}/edit
+  defaults: { _controller: AppBundle:Entreprise:edit }
+  requirements:
+    id: \d+
+
+entreprise_delete:
+  path: /admin/entreprise/{id}/delete
+  defaults: { _controller: AppBundle:Entreprise:delete }
+  requirements:
+    id: \d+
+
+entreprise_detail:
+  path: /admin/entreprise/{id}
+  defaults: { _controller: AppBundle:Entreprise:detail }
+  requirements:
+    id: \d+
+
 
 # Spécifiques bundles
 

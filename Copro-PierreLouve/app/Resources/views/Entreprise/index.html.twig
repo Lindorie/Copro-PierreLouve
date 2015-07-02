@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+
+{% block section_title "Gestion des entreprises" %}
+
+    {% block section_content %}
+
+        {% block aside_title "" %}
+        {% block aside_content "" %}
+
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div class="flash-notice">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+
+            <div class="bg-info alert">
+                <span class="glyphicon glyphicon-plus"></span> <a href="{{ path('entreprise_add') }}" title="Ajouter une entreprise">Ajouter une entreprise</a>
+            </div>
+
+            <table class="table table-condensed table-striped table-bordered">
+                <tr>
+                    <th>Nom</th>
+                    <th>Contact</th>
+                    <th>Adresse</th>
+                    <th>Domaine</th>
+                    <th>OPAC</th>
+                    <th>Actions</th>
+                </tr>
+            {% for entreprise in entreprises %}
+                <tr>
+                    <td><a href="{{ path('entreprise_detail', {id: entreprise.id }) }}">{{ entreprise.nom }}</a></td>
+                    <td>
+                        {% if entreprise.email %}
+                            <a href="mailto:{{ entreprise.email }}">{{ entreprise.contact }}</a>
+                            <span class="glyphicon glyphicon-envelope"></span>
+                        {% else %}
+                            {{ entreprise.contact }}
+                        {% endif %}
+                    </td>
+                    <td>{{ entreprise.adresse }}</td>
+                    <td>{{ entreprise.domaine }}</td>
+                    <td>{% if entreprise.opac %}oui{% else %}non{% endif %}</td>
+                    <td>
+                        <a href="{{ path('entreprise_edit', {id: entreprise.id }) }}" title="Modifier cette entreprise">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>&nbsp;
+                        <a href="{{ path('entreprise_delete', {id: entreprise.id }) }}" title="Supprimer cette entreprise">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            {% if entreprises is empty %}
+                <tr>
+                    <td colspan="6">
+                        Aucune entreprise n'est référencée.
+                    </td>
+                </tr>
+            {% endif %}
+            </table>
+
+        <div class="clearfix"></div>
+    {% endblock %}

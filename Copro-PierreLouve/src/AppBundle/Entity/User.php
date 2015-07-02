@@ -40,6 +40,12 @@ class User extends BaseUser
     private $retards;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ConseilSyndical", inversedBy="membres")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     **/
+    private $conseil;
+    
+    /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
@@ -466,5 +472,28 @@ class User extends BaseUser
     public function getRetards()
     {
         return $this->retards;
+    }
+
+    /**
+     * Set conseil
+     *
+     * @param \AppBundle\Entity\ConseilSyndical $conseil
+     * @return User
+     */
+    public function setConseil(\AppBundle\Entity\ConseilSyndical $conseil = null)
+    {
+        $this->conseil = $conseil;
+
+        return $this;
+    }
+
+    /**
+     * Get conseil
+     *
+     * @return \AppBundle\Entity\ConseilSyndical 
+     */
+    public function getConseil()
+    {
+        return $this->conseil;
     }
 }

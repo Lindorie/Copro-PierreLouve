@@ -9,7 +9,7 @@
 			<ul class="user">
 				<li><a href="{{ path('mes_documents', {id: app.user.id }) }}">Mes documents</a></li>
 				<li><a href="{{ path('documents') }}">Documents copropriété</a></li>
-				<li><a href="{{ path('bureau_syndical') }}">Bureau syndical</a></li>
+				<li><a href="{{ path('conseil_syndical') }}">Conseil syndical</a></li>
 			</ul>
             {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GEST') %}
                 <a href="{{ path('administration') }}">Administration</a>
@@ -26,7 +26,7 @@
                     {# Administrateur et Gestionnaire #}
                     {% if is_granted('ROLE_GEST') %}
                         <li><a href="{{ path('coproprietaires_liste') }}">Gérer les copropriétaires</a></li>
-                        <li><a href="#">Gérer les entreprises</a></li>
+                        <li><a href="{{ path('entreprises') }}">Gérer les entreprises</a></li>
                         <li><a href="#">Gérer le calendrier</a></li>
                     {% endif %}
                 </ul>
